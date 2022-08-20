@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.ufc.mandacaru5.model.Property;
 import br.ufc.mandacaru5.model.User;
 import br.ufc.mandacaru5.repository.UserRepository;
 

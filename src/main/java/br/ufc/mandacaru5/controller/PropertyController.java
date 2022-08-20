@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.ufc.mandacaru5.model.Property;
-import br.ufc.mandacaru5.model.User;
 import br.ufc.mandacaru5.service.PropertyService;
 
 @RestController

@@ -17,14 +17,11 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import br.ufc.mandacaru5.model.Property;
 import br.ufc.mandacaru5.model.User;
-import br.ufc.mandacaru5.service.PropertyService;
 import br.ufc.mandacaru5.service.UserService;
 
 public class UserControllerTest {
@@ -70,9 +67,6 @@ public class UserControllerTest {
 	private User user;
 
 	private List<Property> listProperty;
-
-    @Autowired
-    private TestRestTemplate restTemplate;
 
 	private void start() {
 		Property property1 = new Property();
@@ -122,9 +116,24 @@ public class UserControllerTest {
 		assertEquals(User.class, response.getBody().getClass());
 		assertEquals(ID, response.getBody().getId());
 		assertEquals(NAME, response.getBody().getName());
-		// assertEquals(PRICE, response.getBody().getPrice());
+		assertEquals(EMAIL, response.getBody().getEmail());
+		assertEquals(PASSWORD, response.getBody().getPassword());
+		assertEquals(CPF, response.getBody().getCpf());
+		assertEquals(PHONE_NUMBER, response.getBody().getPhoneNumber());
+		assertEquals(ADDRESS, response.getBody().getAddress());
 		assertEquals(listProperty, response.getBody().getProperties());
 	}
+	
+	@Test
+    public void whenFindByIdThenReturnNotFound() {
+        when(service.find(anyInt())).thenReturn(null);
+ 
+        ResponseEntity<User> response = controller.find(ID);
+ 
+        assertNotNull(response);
+        assertNull(response.getBody());
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+    }
 
 	@Test
 	public void whenFindAllThenReturnSuccess() {
@@ -137,7 +146,11 @@ public class UserControllerTest {
 		assertEquals(ResponseEntity.class, response.getClass());
 		assertEquals(ID, response.getBody().get(0).getId());
 		assertEquals(NAME, response.getBody().get(0).getName());
-		// assertEquals(PRICE, response.getBody().get(0).getPrice());
+		assertEquals(EMAIL, response.getBody().get(0).getEmail());
+		assertEquals(PASSWORD, response.getBody().get(0).getPassword());
+		assertEquals(CPF, response.getBody().get(0).getCpf());
+		assertEquals(PHONE_NUMBER, response.getBody().get(0).getPhoneNumber());
+		assertEquals(ADDRESS, response.getBody().get(0).getAddress());
 		assertEquals(listProperty, response.getBody().get(0).getProperties());
 	}
 
@@ -180,7 +193,11 @@ public class UserControllerTest {
 		assertEquals(User.class, response.getBody().getClass());
 		assertEquals(ID, response.getBody().getId());
 		assertEquals(NAME, response.getBody().getName());
-		// assertEquals(PRICE, response.getBody().getPrice());
+		assertEquals(EMAIL, response.getBody().getEmail());
+		assertEquals(PASSWORD, response.getBody().getPassword());
+		assertEquals(CPF, response.getBody().getCpf());
+		assertEquals(PHONE_NUMBER, response.getBody().getPhoneNumber());
+		assertEquals(ADDRESS, response.getBody().getAddress());
 		assertEquals(listProperty, response.getBody().getProperties());
 	}
 
