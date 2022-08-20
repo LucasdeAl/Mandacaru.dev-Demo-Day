@@ -113,23 +113,22 @@ public class UserServiceTest {
 		
 		User response = service.find(ID);
 		
-		Assertions.assertNotNull(response);
-		Assertions.assertEquals(User.class, response.getClass());
-		Assertions.assertEquals(ID, response.getId());
-		Assertions.assertEquals(NAME, response.getName());
-		Assertions.assertEquals(EMAIL, response.getEmail());
-		Assertions.assertEquals(PASSWORD, response.getPassword());
-		Assertions.assertEquals(CPF, response.getCpf());
-		Assertions.assertEquals(PHONE_NUMBER, response.getPhoneNumber());
-		Assertions.assertEquals(ADDRESS, response.getAddress());
-		Assertions.assertEquals(listProperty, response.getProperties());
+		assertNotNull(response);
+		assertEquals(User.class, response.getClass());
+		assertEquals(ID, response.getId());
+		assertEquals(NAME, response.getName());
+		assertEquals(EMAIL, response.getEmail());
+		assertEquals(PASSWORD, response.getPassword());
+		assertEquals(CPF, response.getCpf());
+		assertEquals(PHONE_NUMBER, response.getPhoneNumber());
+		assertEquals(ADDRESS, response.getAddress());
+		assertEquals(listProperty, response.getProperties());
 		
 	}
 	
 	@Test
 	public void whenFindByIdThenReturnNullIfIdLessThan1 () {
 		User response = service.find(0);
-		
 		assertNull(response);
 	}
 	
@@ -149,15 +148,15 @@ public class UserServiceTest {
 		
 		List<User> response = service.findAll();
 		
-		Assertions.assertNotNull(response);
-		Assertions.assertEquals(ID, response.get(0).getId());
-		Assertions.assertEquals(NAME, response.get(0).getName());
-		Assertions.assertEquals(EMAIL, response.get(0).getEmail());
-		Assertions.assertEquals(PASSWORD, response.get(0).getPassword());
-		Assertions.assertEquals(CPF, response.get(0).getCpf());
-		Assertions.assertEquals(PHONE_NUMBER, response.get(0).getPhoneNumber());
-		Assertions.assertEquals(ADDRESS, response.get(0).getAddress());
-		Assertions.assertEquals(listProperty, response.get(0).getProperties());
+		assertNotNull(response);
+		assertEquals(ID, response.get(0).getId());
+		assertEquals(NAME, response.get(0).getName());
+		assertEquals(EMAIL, response.get(0).getEmail());
+		assertEquals(PASSWORD, response.get(0).getPassword());
+		assertEquals(CPF, response.get(0).getCpf());
+		assertEquals(PHONE_NUMBER, response.get(0).getPhoneNumber());
+		assertEquals(ADDRESS, response.get(0).getAddress());
+		assertEquals(listProperty, response.get(0).getProperties());
 	}
 	
 	@Test
@@ -168,7 +167,14 @@ public class UserServiceTest {
 	}
 	
 	@Test
-		public void whenDeleteVerifySuccess() {
+	public void whenUpdateVerifySuccess() {
+        when(repository.save(any())).thenReturn(user);  
+        service.save(ID, user);
+        verify(repository).save(any());
+	}	
+	
+	@Test
+	public void whenDeleteVerifySuccess() {
 		when(repository.findById(anyInt())).thenReturn(Optional.of(user));
 		doNothing().when(repository).delete(user);
 		
@@ -176,6 +182,21 @@ public class UserServiceTest {
 		
 		verify(repository).findById(anyInt());
 		verify(repository).delete(any());
+	}
+	
+	@Test
+	public void whenFindByNameThenReturnAProduct() {
+		when(repository.findFirstByName(anyString())).thenReturn(user);
+		User response = service.findByName(NAME);
+		assertNotNull(response);
+		assertEquals(NAME, response.getName());
+	}
+
+	@Test 
+	public void whenFindByNameThenReturnNullIfNameLess3() {
+		when(repository.findFirstByName(anyString())).thenReturn(null);
+		User response = service.findByName("as");
+		assertNull(response);
 	}
 	
 }

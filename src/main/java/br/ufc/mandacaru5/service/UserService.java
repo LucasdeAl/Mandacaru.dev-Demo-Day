@@ -24,12 +24,12 @@ public class UserService {
 		userRepository.save(entity);
 	}
 	
-	public void update(int id, User entity) {
-		User user = find(id);		
-		user.setName(entity.getName());
+	// public void update(int id, User entity) {
+		// User user = find(id);		
+		// user.setName(entity.getName());
 		
-		userRepository.save(user);				
-	}
+		// userRepository.save(user);				
+	// }
 
 	public void delete(int id) {
 		User user = find(id);
@@ -55,7 +55,7 @@ public class UserService {
 	}
 
 	public User findByName(String str) {
-		if (str.length() < 1) {
+		if (str.length() < 3) {
 			return null;
 		}
 		return userRepository.findFirstByName(str);
