@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.ufc.mandacaru5.model.Property;
-import br.ufc.mandacaru5.model.User;
+import br.ufc.mandacaru5.model.Owner;
 import br.ufc.mandacaru5.repository.UserRepository;
 
 @Service
@@ -16,7 +16,7 @@ public class UserService {
 	@Autowired
 	UserRepository userRepository;
 
-	public void save(int id, User entity) {
+	public void save(int id, Owner entity) {
 		if (id != 0) {
 			entity.setId(id);
 		}
@@ -24,37 +24,37 @@ public class UserService {
 		userRepository.save(entity);
 	}
 	
-	public void update(int id, User entity) {
-		User user = find(id);		
-		user.setName(entity.getName());
+	public void update(int id, Owner entity) {
+		Owner owner = find(id);		
+		owner.setName(entity.getName());
 		
-		userRepository.save(user);				
+		userRepository.save(owner);				
 	}
 
 	public void delete(int id) {
-		User user = find(id);
-		userRepository.delete(user);
+		Owner owner = find(id);
+		userRepository.delete(owner);
 	}
 
-	public User find(int id) {
+	public Owner find(int id) {
 		if (id < 1) {
 			return null;
 		}
 
-		Optional<User> user = userRepository.findById(id);
+		Optional<Owner> owner = userRepository.findById(id);
 
-		if (user.isPresent()) {
-			return user.get();
+		if (owner.isPresent()) {
+			return owner.get();
 		}
 
 		return null;
 	}
 
-	public List<User> findAll() {
+	public List<Owner> findAll() {
 		return userRepository.findAll();
 	}
 
-	public User findByName(String str) {
+	public Owner findByName(String str) {
 		if (str.length() < 1) {
 			return null;
 		}

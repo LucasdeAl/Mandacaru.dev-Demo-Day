@@ -41,7 +41,7 @@ public class Property {
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	@JsonIgnore
-	private User user;
+	private Owner owner;
 	
 
 	public Property() {
@@ -49,7 +49,7 @@ public class Property {
 	}
 
 	public Property(int id, String title, String address, Double terrainArea, Double constructedArea, int rooms,
-			int bathrooms, int garageVacancies, double price, String status, User user) {
+			int bathrooms, int garageVacancies, double price, String status, Owner owner) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -61,14 +61,14 @@ public class Property {
 		this.garageVacancies = garageVacancies;
 		this.price = price;
 		this.status = status;
-		this.user = user;
+		this.owner = owner;
 	}
 
 	@Override
 	public String toString() {
 		return "Imovel [id=" + id + ", title=" + title + ", address=" + address + ", terrainArea=" + terrainArea
 				+ ", constructedArea=" + constructedArea + ", rooms=" + rooms + ", bathrooms=" + bathrooms
-				+ ", garageVacancies=" + garageVacancies + ", price=" + price + ", status=" + status + ", user=" + user
+				+ ", garageVacancies=" + garageVacancies + ", price=" + price + ", status=" + status + ", user=" + owner
 				+ "]";
 	}
 
@@ -144,12 +144,12 @@ public class Property {
 		this.status = status;
 	}
 
-	public User getUser() {
-		return user;
+	public Owner getUser() {
+		return owner;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUser(Owner owner) {
+		this.owner = owner;
 	}
 
 

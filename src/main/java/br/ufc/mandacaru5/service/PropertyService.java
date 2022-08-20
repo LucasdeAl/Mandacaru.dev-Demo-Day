@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.ufc.mandacaru5.model.Property;
-import br.ufc.mandacaru5.model.User;
+import br.ufc.mandacaru5.model.Owner;
 import br.ufc.mandacaru5.repository.PropertyRepository;
 import br.ufc.mandacaru5.repository.UserRepository;
 
@@ -28,8 +28,8 @@ public class PropertyService {
 	}
 	
 	public void save(int product_id, Property entity) {
-		User user = userRepository.findById(product_id).get();
-		entity.setUser(user);
+		Owner owner = userRepository.findById(product_id).get();
+		entity.setUser(owner);
 		propertyRepository.save(entity);				
 	}
 

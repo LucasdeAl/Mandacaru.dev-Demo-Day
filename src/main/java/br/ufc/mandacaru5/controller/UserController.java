@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.ufc.mandacaru5.model.User;
+import br.ufc.mandacaru5.model.Owner;
 import br.ufc.mandacaru5.service.UserService;
 
 @RestController
@@ -26,40 +26,40 @@ public class UserController {
 	UserService service;
 
 	@GetMapping
-	public ResponseEntity<List<User>> findAll() {
-		return new ResponseEntity<List<User>>(service.findAll(), HttpStatus.OK);
+	public ResponseEntity<List<Owner>> findAll() {
+		return new ResponseEntity<List<Owner>>(service.findAll(), HttpStatus.OK);
 	}
 
 	@GetMapping(path = "{id}")
-	public ResponseEntity<User> find(@PathVariable("id") int id) {
-		User user = service.find(id);
+	public ResponseEntity<Owner> find(@PathVariable("id") int id) {
+		Owner owner = service.find(id);
 
-		if (user != null) {
-			return new ResponseEntity<User>(user, HttpStatus.OK);
+		if (owner != null) {
+			return new ResponseEntity<Owner>(owner, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<Owner>(HttpStatus.NOT_FOUND);
 		}
 	}
 
 	@GetMapping(path = "/search")
-	public ResponseEntity<User> findByName(@RequestParam("name") String name) {
-		User user = service.findByName(name);
+	public ResponseEntity<Owner> findByName(@RequestParam("name") String name) {
+		Owner owner = service.findByName(name);
 
-		if (user != null) {
-			return new ResponseEntity<User>(user, HttpStatus.OK);
+		if (owner != null) {
+			return new ResponseEntity<Owner>(owner, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<Owner>(HttpStatus.NOT_FOUND);
 		}
 	}
 
 	@PostMapping
-	public void save(@RequestBody User user) {
-		service.save(0, user);
+	public void save(@RequestBody Owner owner) {
+		service.save(0, owner);
 	}
 
 	@PutMapping(path = "{id}")
-	public void update(@PathVariable("id") int id, @RequestBody User user) {
-		service.save(id, user);
+	public void update(@PathVariable("id") int id, @RequestBody Owner owner) {
+		service.save(id, owner);
 	}
 
 	@DeleteMapping(path = "{id}")
