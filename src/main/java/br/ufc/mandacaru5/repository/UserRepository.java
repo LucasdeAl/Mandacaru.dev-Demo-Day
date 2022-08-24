@@ -2,9 +2,10 @@ package br.ufc.mandacaru5.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import br.ufc.mandacaru5.model.User;
+import br.ufc.mandacaru5.model.Person;
 
-public interface UserRepository extends JpaRepository<User, Integer> {
+public interface UserRepository extends JpaRepository<Person, Integer> {
 
-	User findFirstByName(String name);
+	Person findFirstByName(String name);
+	Person findByEmail(String email);
 }

@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.ufc.mandacaru5.model.Property;
-import br.ufc.mandacaru5.model.User;
+import br.ufc.mandacaru5.model.Person;
 import br.ufc.mandacaru5.repository.UserRepository;
 
 @Service
@@ -16,7 +16,7 @@ public class UserService {
 	@Autowired
 	UserRepository userRepository;
 
-	public void save(int id, User entity) {
+	public void save(int id, Person entity) {
 		if (id != 0) {
 			entity.setId(id);
 		}
@@ -24,24 +24,24 @@ public class UserService {
 		userRepository.save(entity);
 	}
 	
-	public void update(int id, User entity) {
-		User user = find(id);		
+	public void update(int id, Person entity) {
+		Person user = find(id);		
 		user.setName(entity.getName());
 		
 		userRepository.save(user);				
 	}
 
 	public void delete(int id) {
-		User user = find(id);
+		Person user = find(id);
 		userRepository.delete(user);
 	}
 
-	public User find(int id) {
+	public Person find(int id) {
 		if (id < 1) {
 			return null;
 		}
 
-		Optional<User> user = userRepository.findById(id);
+		Optional<Person> user = userRepository.findById(id);
 
 		if (user.isPresent()) {
 			return user.get();
@@ -50,11 +50,11 @@ public class UserService {
 		return null;
 	}
 
-	public List<User> findAll() {
+	public List<Person> findAll() {
 		return userRepository.findAll();
 	}
 
-	public User findByName(String str) {
+	public Person findByName(String str) {
 		if (str.length() < 1) {
 			return null;
 		}

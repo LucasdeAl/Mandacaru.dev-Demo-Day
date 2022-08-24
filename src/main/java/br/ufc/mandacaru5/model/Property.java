@@ -41,7 +41,7 @@ public class Property {
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	@JsonIgnore
-	private User user;
+	private Person user;
 	
 
 	public Property() {
@@ -49,7 +49,7 @@ public class Property {
 	}
 
 	public Property(int id, String title, String address, Double terrainArea, Double constructedArea, int rooms,
-			int bathrooms, int garageVacancies, double price, String status, User user) {
+			int bathrooms, int garageVacancies, double price, String status, Person user) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -144,11 +144,11 @@ public class Property {
 		this.status = status;
 	}
 
-	public User getUser() {
+	public Person getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(Person user) {
 		this.user = user;
 	}
 
