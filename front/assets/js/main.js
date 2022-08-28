@@ -5,9 +5,9 @@ navClose = document.getElementById('nav-close')
 
 /*===== MENU SHOW =====*/
 /* Validate if constant exists */
-if(navToggle){
-    navToggle.addEventListener('click', () =>{
-        navMenu.classList.add('show-menu')
+if(navClose){
+    navClose.addEventListener('click', () =>{
+        navMenu.classList.remove('show-menu')
     })
 }
 
@@ -15,14 +15,14 @@ if(navToggle){
 /* Validate if constant exists */
 if(navClose){
     navClose.addEventListener('click', () =>{
-        navMenu.classList.remove('show-menu')
+        navMenu.classList.add('show-menu')
     })
 }
 
 /*=============== REMOVE MENU MOBILE ===============*/
 const navLink = document.querySelectorAll('.nav__link')
 
-const linkAction = () =>{
+function linkAction(){
     const navMenu = document.getElementById('nav-menu')
     // When we click on each nav__link, we remove the show-menu class
     navMenu.classList.remove('show-menu')
@@ -32,7 +32,7 @@ navLink.forEach(n => n.addEventListener('click', linkAction))
 
 
 /*=============== CHANGE BACKGROUND HEADER ===============*/
-const scrollHeader = () =>{
+function scrollHeader() {
   const header = document.getElementById('header')
   // When the scroll is greater than 50 viewport height, add the scroll-header class to the header tag
   this.scrollY >= 50 ? header.classList.add('scroll-header') 
@@ -96,7 +96,7 @@ window.addEventListener('scroll', scrollActive)
 function scrollUp(){
 	const scrollUp = document.getElementById('scroll-up')
     // When the scroll is higher than 350 viewport height, add the show-scroll class to the a tag with the scrollup class
-	if(this.ScrollY >=350) scrollUp.classList.add('show-scroll');
+	if(this.scrollY >=350) scrollUp.classList.add('show-scroll');
 }
 window.addEventListener('scroll', scrollUp)
 
@@ -164,11 +164,6 @@ const toggleItem = (item) =>{
   }
 }
 
-/*=============== SCROLL SECTIONS ACTIVE LINK ===============*/
-
-
-/*=============== SHOW SCROLL UP ===============*/ 
-
 
 /*=============== DARK LIGHT THEME ===============*/ 
 const themeButton = document.getElementById('theme-button')
@@ -200,5 +195,20 @@ themeButton.addEventListener('click', () => {
     localStorage.setItem('selected-icon', getCurrentIcon())
 })
 
+/* =========== SCROLL REVEAL ANIMATION ============ */
+const sr = ScrollReveal({
+  origin: 'top',
+  distance: '60px',
+  duration: 2500,
+  delay: 400,
+  // reset: true  
+})
 
-/*=============== SCROLL REVEAL ANIMATION ===============*/
+sr.reveal('.home__title, .popular__container, .subscribe__container, .footer__container')
+sr.reveal('.home__description, .footer__info', {delay: 500})
+sr.reveal('.home__search', {delay: 600})
+sr.reveal('.home__value', {delay: 700})
+sr.reveal('.home__images', {delay: 800, origin: 'bottom'})
+sr.reveal('.logos__img', {interval: 50})
+sr.reveal('.value__images, .contact__content', {origin: 'left'})
+sr.reveal('.value__content, .contact__images', {interval: 'right'})
