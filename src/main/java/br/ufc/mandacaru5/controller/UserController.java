@@ -54,7 +54,6 @@ public class UserController {
 	}
 
 	@PostMapping
-	@PreAuthorize("hasAuthority('ADMIN')")
 	public void save(@RequestBody Person user) {
 		service.save(0, user);
 	}

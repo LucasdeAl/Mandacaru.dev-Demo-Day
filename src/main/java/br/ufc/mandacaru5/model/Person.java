@@ -17,6 +17,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
 @Table(name="users")
@@ -57,7 +58,7 @@ public class Person implements UserDetails {
 		this.id = id;
 		this.name = name;
 		this.email = email;
-		this.password = password;
+		this.password = new BCryptPasswordEncoder().encode(password);
 		this.cpf = cpf;
 		this.phoneNumber = phoneNumber;
 		Address = address;
