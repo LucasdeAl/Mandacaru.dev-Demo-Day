@@ -27,11 +27,13 @@ public class UserController {
 	UserService service;
 
 	@GetMapping
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public ResponseEntity<List<Person>> findAll() {
 		return new ResponseEntity<List<Person>>(service.findAll(), HttpStatus.OK);
 	}
 
 	@GetMapping(path = "{id}")
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public ResponseEntity<Person> find(@PathVariable("id") int id) {
 		Person user = service.find(id);
 
@@ -43,6 +45,7 @@ public class UserController {
 	}
 
 	@GetMapping(path = "/search")
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public ResponseEntity<Person> findByName(@RequestParam("name") String name) {
 		Person user = service.findByName(name);
 
@@ -59,11 +62,13 @@ public class UserController {
 	}
 
 	@PutMapping(path = "{id}")
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public void update(@PathVariable("id") int id, @RequestBody Person user) {
 		service.save(id, user);
 	}
 
 	@DeleteMapping(path = "{id}")
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public void delete(@PathVariable("id") int id) {
 		service.delete(id);
 	}

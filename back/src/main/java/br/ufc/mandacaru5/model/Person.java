@@ -58,7 +58,8 @@ public class Person implements UserDetails {
 		this.id = id;
 		this.name = name;
 		this.email = email;
-		this.password = new BCryptPasswordEncoder().encode(password);
+		password = new BCryptPasswordEncoder().encode(password);
+		this.password = password;
 		this.cpf = cpf;
 		this.phoneNumber = phoneNumber;
 		Address = address;
