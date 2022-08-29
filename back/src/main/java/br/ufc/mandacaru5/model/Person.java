@@ -42,7 +42,7 @@ public class Person implements UserDetails {
 	private String password;
 	private String cpf;//Person registration in Brazil
 	private String phoneNumber;
-	private String Address;
+	private String address;
 	
 	@OneToMany(mappedBy = "user")
 	private List<Property> properties;
@@ -58,12 +58,17 @@ public class Person implements UserDetails {
 		this.id = id;
 		this.name = name;
 		this.email = email;
-		password = new BCryptPasswordEncoder().encode(password);
+		this.password = new BCryptPasswordEncoder().encode(password);
 		this.password = password;
 		this.cpf = cpf;
 		this.phoneNumber = phoneNumber;
-		Address = address;
+		this.address = address;
 		this.properties = properties;
+	}
+	
+	public void encodePassword()
+	{
+		this.password = new BCryptPasswordEncoder().encode(this.password);
 	}
 
 	public String getEmail() {
@@ -99,11 +104,11 @@ public class Person implements UserDetails {
 	}
 
 	public String getAddress() {
-		return Address;
+		return address;
 	}
 
 	public void setAddress(String address) {
-		Address = address;
+		address = address;
 	}
 
 	public List<Property> getProperties() {
@@ -135,7 +140,7 @@ public class Person implements UserDetails {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", cpf=" + cpf
-				+ ", phoneNumber=" + phoneNumber + ", Address=" + Address + ", properties=" + properties + "]";
+				+ ", phoneNumber=" + phoneNumber + ", Address=" + address + ", properties=" + properties + "]";
 	}
 	
 	@ManyToMany

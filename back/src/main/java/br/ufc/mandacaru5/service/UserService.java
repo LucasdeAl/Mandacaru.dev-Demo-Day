@@ -20,6 +20,10 @@ public class UserService {
 		if (id != 0) {
 			entity.setId(id);
 		}
+		else if(id==0)
+		{
+			entity.encodePassword();
+		}
 
 		userRepository.save(entity);
 	}
