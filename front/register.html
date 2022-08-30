@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--=============== FAVICON ===============-->
+    <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
+
+
+    <!--=============== BOXICONS ===============-->
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+
+    <!--=============== SWIPER CSS ===============-->
+    <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
+
+    <!--=============== CSS ===============-->
+    <link rel="stylesheet" href="assets/css/styles.css">
+
+    <title>Document</title>
+
+    <script src="https://unpkg.com/vue@2.7.7/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <!--==================== HEADER ====================-->
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="index.html" class="nav__logo__login">
+                Hous <i class='bx bxs-home-alt-2'></i>
+            </a>
+
+            <div class="nav__menu">
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="index.html" class="nav__link active-link">
+                            <i class='bx bx-home-alt-2' ></i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+
+                    <li class="nav__item">
+                        <a href="#popular" class="nav__link">
+                            <i class='bx bx-building-house' ></i>
+                            <span>Imóveis</span>
+                        </a>
+                    </li>
+
+                    <li class="nav__item">
+                        <a href="#value" class="nav__link">
+                            <i class='bx bx-award' ></i>
+                            <span>Valor</span>
+                        </a>
+                    </li>
+
+                    <li class="nav__item">
+                        <a href="#contact" class="nav__link">
+                            <i class='bx bx-phone' ></i>
+                            <span>Contato</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Theme change button -->
+            <i class='bx bx-moon change-theme' id="theme-button"></i>
+
+            <a href="login.html" class="button nav__button">
+                Entrar
+            </a>
+
+        </nav>
+    </header>
+ 
+        <!--==================== MAIN ====================-->
+        <main class="main">
+            <!--==================== LOGIN ====================-->
+            <section class="login section" id="login"></section>
+                <div class="login__container container grid">
+                    <div class="login__data">
+                        <h1 class="login__title">
+                            Entrar
+                        </h1>
+                        <p class="login__description">
+                            Entre para ver seus anúncios, propostas e processos em andamento
+                        </p>
+
+                        <div id="app">
+                            <div>
+                                Login: <input type="text" name="" id="" v-model="email" /><br /><br />
+                                Password: <input type="password" name="" id="" v-model="password" /><br /><br />
+                                <button @click="login">Login</button><br /><br />
+                    
+                                Id: <input type="text" name="" id="" v-model="id" /><br /><br />
+                                name: <input type="text" name="" id="" v-model="name" /><br /><br />
+                                price:
+                                <input type="price" name="" id="" v-model="price" /><br /><br />
+                    
+                                <button @click="fetchProducts">Fetch products</button><br /><br />
+                                <button @click="fetchProductById">Fetch Product By Id</button><br /><br />
+                                <button @click="fetchProductByName">Fetch Product By name</button><br /><br />
+                                <button @click="postProduct">Post Product</button><br /><br />
+                                <button @click="putProduct">Put Product</button><br /><br />
+                                <button @click="deleteProductById">Delete Product</button><br /><br />
+                    
+                                <p>{{ product }}</p>
+                    
+                                <ul>
+                                    <li v-for="product in products" :key="product.id">
+                                        <h4>{{ product.id }}</h4>
+                                        <p>{{ product.name }}</p>
+                                        <p>{{ product.price }}</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    
+                        <script>
+                            var app = new Vue({
+                                el: "#app",
+                                data: {
+                                    email: "gomes@gmail.com",
+                                    password: "senha123",
+                                    token: "",
+                                    id: 0,
+                                    name: "",
+                                    price: "",
+                                    product: {},
+                                    products: [],
+                                    baseURI: "http://localhost:8080/api/properties",
+                                    oauth: "http://localhost:8080/oauth/token"
+                                },
+                                methods: {
+                                    login: function () {
+                                        var formData = new FormData();
+                                        formData.append('username', this.email);
+                                        formData.append('password', this.password);
+                                        formData.append('grant_type', "password");
+                    
+                                        axios.post(this.oauth, formData, { auth: { username: 'mandacaru', password: 'senha123' } }).then((result) => {
+                                            this.token = result.data.access_token;
+                                            console.log(this.token);
+                                        });
+                                    },
+                    
+                                    fetchProducts: function () {
+                                        const config = {
+                                            headers: { Authorization: "Bearer " + this.token }
+                                        };
+                    
+                                        axios.get(this.baseURI, config).then((result) => {
+                                            this.products = result.data;
+                                        });
+                                    },
+                                    fetchProductById: function () {
+                                        const config = {
+                                            headers: { Authorization: "Bearer " + this.token }
+                                        };
+                    
+                                        axios
+                                            .get(this.baseURI + "/" + this.id, config)
+                                            .then((result) => {
+                                                this.product = result.data;
+                                            })
+                                            .catch(function (error) {
+                                                console.log(error);
+                                            });
+                                    },
+                                    fetchProductByName: function () {
+                                        const config = {
+                                            headers: { Authorization: "Bearer " + this.token }
+                                        };
+                    
+                                        axios
+                                            .get(this.baseURI + "/search?name=" + this.name, config)
+                                            .then((result) => {
+                                                this.product = result.data;
+                                            })
+                                            .catch(function (error) {
+                                                console.log(error);
+                                            });
+                                    },
+                                    postProduct: function () {
+                                        const config = {
+                                            headers: { Authorization: "Bearer " + this.token }
+                                        };
+                    
+                                        let obj = {
+                                            name: this.name,
+                                            price: parseFloat(this.price),
+                                        };
+                    
+                                        axios.post(this.baseURI, obj, config).then((result) => {
+                                            this.product = result.data;
+                                        });
+                                    },
+                                    putProduct: function () {
+                                        const config = {
+                                            headers: { Authorization: "Bearer " + this.token }
+                                        };
+                    
+                                        let obj = {
+                                            name: this.name,
+                                            price: parseFloat(this.price),
+                                        };
+                    
+                                        axios.put(this.baseURI + "/" + this.id, obj, config).then((result) => {
+                                            this.product = result.data;
+                                        });
+                                    },
+                                    deleteProductById: function () {
+                                        const config = {
+                                            headers: { Authorization: "Bearer " + this.token }
+                                        };
+                    
+                                        axios.delete(this.baseURI + "/" + this.id, config).then((result) => {
+                                            console.log(result.status);
+                                        });
+                                    },
+                                },
+                            });
+                        </script>
+
+                    </div>
+                </div>
+            </section>
+        </main>
+
+            <!--=================== FOOTER ====================-->
+            <footer class="footer section">
+                <div class="footer__container container grid">
+                    <div>
+                        <a href="#" class="footer__logo">
+                            Hous <i class='bx bxs-home-alt-2'></i>
+                        </a>
+                        <p class="footer__description">
+                            Encontre ou anuncie o seu imóvel com <br> a melhor tecnologia possível
+                        </p>
+                    </div>
+    
+                    <div class="footer__content">
+                        <div>
+                            <h3 class="footer__title">
+                                Sobre
+                            </h3>
+                            <ul class="footer__links">
+                                <li>
+                                    <a href="#" class="footer__link">Sobre nós</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="footer__link">Funcionalidades</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="footer__link">Novidades & Blog</a>
+                                </li>
+                            </ul>
+                        </div>
+        
+                        <div>
+                            <h3 class="footer__title">
+                                Empresa
+                            </h3>
+                            <ul class="footer__links">
+                                <li>
+                                    <a href="#" class="footer__link">Como trabalhamos</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="footer__link">Apoiadores</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="footer__link">Segurança</a>
+                                </li>
+                            </ul>
+                        </div>
+        
+                        <div>
+                            <h3 class="footer__title">
+                                Suporte
+                            </h3>
+                            <ul class="footer__links">
+                                <li>
+                                    <a href="#" class="footer__link">FAQs</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="footer__link">Atendimento</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="footer__link">Contate-nos</a>
+                                </li>
+                            </ul>
+                        </div>
+        
+                        <div>
+                            <h3 class="footer__title">
+                                Siga-nos
+                            </h3>
+                            <ul class="footer__social">
+                                <a href="https://www.facebook.com/" class="footer__social-link">
+                                    <i class='bx bxl-facebook-circle'></i>
+                                </a>
+                                <a href="https://www.instagram.com/" class="footer__social-link">
+                                    <i class='bx bxl-instagram-alt'></i>
+                                </a>
+                                <a href="https://www.pinterest.com/" class="footer__social-link">
+                                    <i class='bx bxl-pinterest'></i>
+                                </a>
+                            </ul>
+                        </div>
+        
+                    </div>
+                </div>
+    
+    
+                <div class="footer__info container">
+                    <span class="footer__copy">
+                        &#169; Squad 2 - Mandacaru. Todos os direitos reservados
+                    </span>
+    
+                    <div class="footer__privacy">
+                        <a href="#">Termos e condições</a>
+                        <a href="#">Política de privacidade</a>
+                        <a href="#"></a>
+                    </div>
+    
+                </div>
+    
+            </footer>
+    
+    
+            <!--========== SCROLL UP ==========-->
+            <a href="#" class="scrollup" id="scroll-up">
+                <i class='bx bx-chevrons-up'></i>
+            </a>
+    
+            <!--=============== SCROLLREVEAL ===============-->
+            <!-- <script src="assets/js/scrollreveal.min.js"></script> -->
+    
+            <!--=============== SWIPER JS ===============-->
+            <script src="assets/js/swiper-bundle.min.js"></script>
+    
+            <!--=============== MAIN JS ===============-->
+            <script src="assets/js/main.js"></script>
+        </body>
+
+</body>
+
+</html>
