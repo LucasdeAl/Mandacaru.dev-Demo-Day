@@ -184,5 +184,12 @@ public class Person implements UserDetails {
 	}
 
 
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
+	
+	public List<Role> getRoles() {
+		return roles;
+	}
 
 }
