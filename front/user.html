@@ -47,23 +47,23 @@
                     </li>
 
                     <li class="nav__item">
-                        <a href="#popular" class="nav__link">
+                        <a href="adverts.html" class="nav__link">
                             <i class='bx bx-building-house' ></i>
-                            <span>Imóveis</span>
+                            <span>Meus anúncios</span>
                         </a>
                     </li>
 
                     <li class="nav__item">
-                        <a href="#value" class="nav__link">
+                        <a href="process.html" class="nav__link">
                             <i class='bx bx-award' ></i>
-                            <span>Valor</span>
+                            <span>Processos em andamento</span>
                         </a>
                     </li>
 
                     <li class="nav__item">
-                        <a href="#contact" class="nav__link">
+                        <a href="index.html#contact" class="nav__link">
                             <i class='bx bx-phone' ></i>
-                            <span>Contato</span>
+                            <span>Suporte</span>
                         </a>
                     </li>
                 </ul>
@@ -77,192 +77,83 @@
  
         <!--==================== MAIN ====================-->
         <main class="main">
-            <!--==================== LOGIN ====================-->
-            <section class="login section" id="login"></section>
-                <div class="login__container container grid">
-                    <div class="login__data">
-                        <h1 class="login__title">
-                            Entrar
-                        </h1>
-                        <p class="login__description">
-                            Entre para ver seus anúncios, propostas e processos em andamento.
-                        </p>
-
-                        <div id="app">
-                            <div class="login__form">
-                                <p>
-                                    Login: <input type="text" name="" id="" v-model="email" /><br /><br />
-                                    Password: <input type="password" name="" id="" v-model="password" /><br /><br />
-                                    <a href="">
-                                        
-                                    </a>
-                                    <button @click="login">Login</button><br /><br />
-                                    
-                                    Id: <input type="text" name="" id="" v-model="id" /><br /><br />
-                                    title: <input type="text" name="" id="" v-model="title" /><br /><br />
-                                    terrainArea: <input type="number" name="" id="" v-model="terrainArea" /><br /><br />
-                                    constructedArea: <input type="number" name="" id="" v-model="constructedArea" /><br /><br />
-                                    rooms: <input type="number" name="" id="" v-model="rooms" /><br /><br />
-                                    bathrooms: <input type="number" name="" id="" v-model="bathrooms" /><br /><br />
-                                    garageVacancies: <input type="number" name="" id="" v-model="garageVacancies" /><br /><br />
-                                    status: <input type="text" name="" id="" v-model="status" /><br /><br />
-                                    price: <input type="price" name="" id="" v-model="price" /><br /><br />
-
-                                </p>
-                                 
-                                <button @click="fetchProperties">Fetch properties</button><br /><br />
-                                <button @click="fetchPropertyById">Fetch Property By Id</button><br /><br />
-                                <button @click="fetchPropertyByName">Fetch Property By name</button><br /><br />
-                                <button @click="postProperty">Post Property</button><br /><br />
-                                <button @click="putProperty">Put Property</button><br /><br />
-                                <button @click="deletePropertyById">Delete Property</button><br /><br />
-                    
-                                <p>{{ property }}</p>
-                    
-                                <ul>
-                                    <li v-for="property in properties" :key="property.id">
-                                        <h4>{{ property.id }}</h4>
-                                        <p>{{ property.title }}</p>
-                                        <p>{{ property.address }}</p>
-                                        <p>{{ property.terrainArea }}</p>
-                                        <p>{{ property.constructedArea }}</p>
-                                        <p>{{ property.rooms }}</p>
-                                        <p>{{ property.bathrooms }}</p>
-                                        <p>{{ property.garageVacancies }}</p>
-                                        <p>{{ property.status }}</p>
-                                        <p>{{ property.price }}</p>
-                                    </li>
-                                </ul>
+            
+                        <section class="popular section">
+                            <div class="container">
+                                <span class="section__subtitle">Olá, Felipe</span>
+                                <h2 class="section__title">
+                                    Seja bem-vindo<span>.</span>
+                                </h2>
+            
+                                <div class="popular__container swiper">
+                                    <div class="swiper-wrapper">
+                                        <article class="popular__card swiper-slide">
+                                            <img src="assets/img/popular1.jpg" alt="" class="popular__img">
+                                            <div class="popular__data">
+                                                <h2 class="popular__price">
+                                                    <span>R$ </span>1.242.000,00
+                                                </h2>
+                                                <h3 class="popular__title">
+                                                    Sol Maré
+                                                </h3>
+                                                <p class="popular__description">
+                                                    Rua dos Pinheiros, 306. Guarujá, São Paulo - Brasil. 
+                                                </p>
+                                            </div>
+                                        </article>
+                                        <article class="popular__card swiper-slide">
+                                            <img src="assets/img/popular2.jpg" alt="" class="popular__img">
+                                            <div class="popular__data">
+                                                <h2 class="popular__price">
+                                                    <span>R$ </span>948.000,00
+                                                </h2>
+                                                <h3 class="popular__title">
+                                                    Ouro de Minas
+                                                </h3>
+                                                <p class="popular__description">
+                                                    Rua dos Pinhais, 603. Ouro Preto, Minas Gerais - Brasil. 
+                                                </p>
+                                            </div>
+                                        </article>
+                                        <article class="popular__card swiper-slide">
+                                            <img src="assets/img/popular3.jpg" alt="" class="popular__img">
+                                            <div class="popular__data">
+                                                <h2 class="popular__price">
+                                                    <span>R$ </span>708.000,00
+                                                </h2>
+                                                <h3 class="popular__title">
+                                                    Casa Alves
+                                                </h3>
+                                                <p class="popular__description">
+                                                    Rua dos Cocais, 102. Rio de Janeiro, Rio de Janeiro - Brasil. 
+                                                </p>
+                                            </div>
+                                        </article>
+                                        <article class="popular__card swiper-slide">
+                                            <img src="assets/img/popular4.jpg" alt="" class="popular__img">
+                                            <div class="popular__data">
+                                                <h2 class="popular__price">
+                                                    <span>R$ </span>1.433.000,00
+                                                </h2>
+                                                <h3 class="popular__title">
+                                                    Jardins da Fortaleza
+                                                </h3>
+                                                <p class="popular__description">
+                                                    Rua dos Laranjais, 707. Fortaleza, Ceará - Brasil. 
+                                                </p>
+                                            </div>
+                                        </article>
+                                    </div>
+                                    <div class="swiper-button-next">
+                                        <i class='bx bx-chevron-right'></i>
+                                    </div>
+                                    <div class="swiper-button-prev">
+                                        <i class='bx bx-chevron-left' ></i>
+                                    </div>
+                                </div>
+            
                             </div>
-                        </div>
-                    
-                        <script>
-                            var app = new Vue({
-                                el: "#app",
-                                data: {
-                                    email: "",
-                                    password: "",
-                                    token: "",
-                                    id: 0,
-                                    title: "",
-                                    address: "",
-                                    terrainArea: "",
-                                    constructedArea: "",
-                                    rooms: "",
-                                    bathrooms: "",
-                                    garageVacancies: "",
-                                    status: "",
-                                    price: "",
-                                    property: {},
-                                    properties: [],
-                                    baseURI: "http://localhost:8080/api/user/1/properties",
-                                    oauth: "http://localhost:8080/oauth/token"
-                                },
-                                methods: {
-                                    login: function () {
-                                        var formData = new FormData();
-                                        formData.append('username', this.email);
-                                        formData.append('password', this.password);
-                                        formData.append('grant_type', "password");
-                    
-                                        axios.post(this.oauth, formData, { auth: { username: 'arrudabritofelipe@gmail.com', password: 'senha1' } }).then((result) => {
-                                            this.token = result.data.access_token;
-                                            console.log(this.token);
-                                        });
-                                    },
-                    
-                                    fetchProperties: function () {
-                                        const config = {
-                                            headers: { Authorization: "Bearer " + this.token }
-                                        };
-                    
-                                        axios.get(this.baseURI, config).then((result) => {
-                                            this.properties = result.data;
-                                        });
-                                    },
-                                    fetchPropertyById: function () {
-                                        const config = {
-                                            headers: { Authorization: "Bearer " + this.token }
-                                        };
-                    
-                                        axios
-                                            .get(this.baseURI + "/" + this.id, config)
-                                            .then((result) => {
-                                                this.property = result.data;
-                                            })
-                                            .catch(function (error) {
-                                                console.log(error);
-                                            });
-                                    },
-                                    fetchPropertyByName: function () {
-                                        const config = {
-                                            headers: { Authorization: "Bearer " + this.token }
-                                        };
-                    
-                                        axios
-                                            .get(this.baseURI + "/search?title=" + this.title, config)
-                                            .then((result) => {
-                                                this.property = result.data;
-                                            })
-                                            .catch(function (error) {
-                                                console.log(error);
-                                            });
-                                    },
-                                    postProperty: function () {
-                                        const config = {
-                                            headers: { Authorization: "Bearer " + this.token }
-                                        };
-                    
-                                        let obj = {
-                                            title: this.title,
-                                            address: this.address,
-                                            terrainArea: this.terrainArea,
-                                            constructedArea: this.constructedArea,
-                                            rooms: this.rooms,
-                                            bathrooms: this.bathrooms,
-                                            garageVacancies: this.garageVacancies,
-                                            status: this.status,                                     
-                                            price: parseFloat(this.price),
-                                        };
-                    
-                                        axios.post(this.baseURI, obj, config).then((result) => {
-                                            this.property = result.data;
-                                        });
-                                    },
-                                    putProperty: function () {
-                                        const config = {
-                                            headers: { Authorization: "Bearer " + this.token }
-                                        };
-                    
-                                        let obj = {
-                                            title: this.title,
-                                            address: this.address,
-                                            terrainArea: this.terrainArea,
-                                            constructedArea: this.constructedArea,
-                                            rooms: this.rooms,
-                                            bathrooms: this.bathrooms,
-                                            garageVacancies: this.garageVacancies,
-                                            status: this.status,         
-                                            price: parseFloat(this.price),
-                                        };
-                    
-                                        axios.put(this.baseURI + "/" + this.id, obj, config).then((result) => {
-                                            this.property = result.data;
-                                        });
-                                    },
-                                    deletePropertyById: function () {
-                                        const config = {
-                                            headers: { Authorization: "Bearer " + this.token }
-                                        };
-                    
-                                        axios.delete(this.baseURI + "/" + this.id, config).then((result) => {
-                                            console.log(result.status);
-                                        });
-                                    },
-                                },
-                            });
-                        </script>
-
+                        </section>
                     </div>
                 </div>
             </section>
@@ -380,7 +271,7 @@
             <script src="assets/js/swiper-bundle.min.js"></script>
 
             <!--=============== MAIN JS ===============-->
-            <script src="assets/js/main.js"></script>
+            <script src="assets/js/user.js"></script>
 
         </body>
 

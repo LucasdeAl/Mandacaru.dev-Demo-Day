@@ -56,7 +56,7 @@
                     <li class="nav__item">
                         <a href="index.html#value" class="nav__link">
                             <i class='bx bx-award' ></i>
-                            <span>Valor</span>
+                            <span>Prêmios</span>
                         </a>
                     </li>
 
@@ -77,36 +77,62 @@
  
         <!--==================== MAIN ====================-->
         <main class="main">
-            <!--==================== LOGIN ====================-->
-            <section class="login section" id="login"></section>
-                <div class="login__container container grid">
-                    <div class="login__data">
-                        <h1 class="login__title">
-                            Entrar
-                        </h1>
-                        <p class="login__description">
-                            Entre para ver seus anúncios, propostas e processos em andamento.
-                        </p>
+            
+                        <section class="popular section">
+                            <div class="container">
+                                <span class="section__subtitle">Cadastre-se</span>
+                                <h2 class="section__title">
+                                    O próximo passo para encontrar o seu lar<span>.</span>
+                                </h2>
+                            </div>
+                        </section>
 
                         <div id="app">
                             <div class="login__form">
                                 <p>
-                                    Usuário: <input class="login__input" type="text" name="" id="" v-model="email" /><br /><br />
-                                    Senha: <input class="login__input" type="password" name="" id="" v-model="password" /><br /><br />
-                                    <a href="user.html">
-                                        <button class="login__button" @click="login">Login</button><br />
+                                    Login: <input type="text" name="" id="" v-model="email" /><br /><br />
+                                    Password: <input type="password" name="" id="" v-model="password" /><br /><br />
+                                    <a href="">
+                                        
                                     </a>
-                                
-                                </p>                   
+                                    <button @click="login">Login</button><br /><br />
+                                    
+                                    Id: <input type="text" name="" id="" v-model="id" /><br /><br />
+                                    title: <input type="text" name="" id="" v-model="title" /><br /><br />
+                                    terrainArea: <input type="number" name="" id="" v-model="terrainArea" /><br /><br />
+                                    constructedArea: <input type="number" name="" id="" v-model="constructedArea" /><br /><br />
+                                    rooms: <input type="number" name="" id="" v-model="rooms" /><br /><br />
+                                    bathrooms: <input type="number" name="" id="" v-model="bathrooms" /><br /><br />
+                                    garageVacancies: <input type="number" name="" id="" v-model="garageVacancies" /><br /><br />
+                                    status: <input type="text" name="" id="" v-model="status" /><br /><br />
+                                    price: <input type="price" name="" id="" v-model="price" /><br /><br />
+
+                                </p>
+                                 
+                                <button @click="fetchProperties">Fetch properties</button><br /><br />
+                                <button @click="fetchPropertyById">Fetch Property By Id</button><br /><br />
+                                <button @click="fetchPropertyByName">Fetch Property By name</button><br /><br />
+                                <button @click="postProperty">Post Property</button><br /><br />
+                                <button @click="putProperty">Put Property</button><br /><br />
+                                <button @click="deletePropertyById">Delete Property</button><br /><br />
+                    
+                                <p>{{ property }}</p>
+                    
+                                <ul>
+                                    <li v-for="property in properties" :key="property.id">
+                                        <h4>{{ property.id }}</h4>
+                                        <p>{{ property.title }}</p>
+                                        <p>{{ property.address }}</p>
+                                        <p>{{ property.terrainArea }}</p>
+                                        <p>{{ property.constructedArea }}</p>
+                                        <p>{{ property.rooms }}</p>
+                                        <p>{{ property.bathrooms }}</p>
+                                        <p>{{ property.garageVacancies }}</p>
+                                        <p>{{ property.status }}</p>
+                                        <p>{{ property.price }}</p>
+                                    </li>
+                                </ul>
                             </div>
-                            <div class="login__sign-up">
-                                <p>
-                                    <a href="sign-in.html">Cadastrar-me</a>
-                                </p>
-                                <p>
-                                    <a href="index.html">Esqueci minha senha</a>
-                                </p>
-                            </div>                 
                         </div>
                     
                         <script>
@@ -143,9 +169,99 @@
                                             console.log(this.token);
                                         });
                                     },
+                    
+                                    fetchProperties: function () {
+                                        const config = {
+                                            headers: { Authorization: "Bearer " + this.token }
+                                        };
+                    
+                                        axios.get(this.baseURI, config).then((result) => {
+                                            this.properties = result.data;
+                                        });
+                                    },
+                                    fetchPropertyById: function () {
+                                        const config = {
+                                            headers: { Authorization: "Bearer " + this.token }
+                                        };
+                    
+                                        axios
+                                            .get(this.baseURI + "/" + this.id, config)
+                                            .then((result) => {
+                                                this.property = result.data;
+                                            })
+                                            .catch(function (error) {
+                                                console.log(error);
+                                            });
+                                    },
+                                    fetchPropertyByName: function () {
+                                        const config = {
+                                            headers: { Authorization: "Bearer " + this.token }
+                                        };
+                    
+                                        axios
+                                            .get(this.baseURI + "/search?title=" + this.title, config)
+                                            .then((result) => {
+                                                this.property = result.data;
+                                            })
+                                            .catch(function (error) {
+                                                console.log(error);
+                                            });
+                                    },
+                                    postProperty: function () {
+                                        const config = {
+                                            headers: { Authorization: "Bearer " + this.token }
+                                        };
+                    
+                                        let obj = {
+                                            title: this.title,
+                                            address: this.address,
+                                            terrainArea: this.terrainArea,
+                                            constructedArea: this.constructedArea,
+                                            rooms: this.rooms,
+                                            bathrooms: this.bathrooms,
+                                            garageVacancies: this.garageVacancies,
+                                            status: this.status,                                     
+                                            price: parseFloat(this.price),
+                                        };
+                    
+                                        axios.post(this.baseURI, obj, config).then((result) => {
+                                            this.property = result.data;
+                                        });
+                                    },
+                                    putProperty: function () {
+                                        const config = {
+                                            headers: { Authorization: "Bearer " + this.token }
+                                        };
+                    
+                                        let obj = {
+                                            title: this.title,
+                                            address: this.address,
+                                            terrainArea: this.terrainArea,
+                                            constructedArea: this.constructedArea,
+                                            rooms: this.rooms,
+                                            bathrooms: this.bathrooms,
+                                            garageVacancies: this.garageVacancies,
+                                            status: this.status,         
+                                            price: parseFloat(this.price),
+                                        };
+                    
+                                        axios.put(this.baseURI + "/" + this.id, obj, config).then((result) => {
+                                            this.property = result.data;
+                                        });
+                                    },
+                                    deletePropertyById: function () {
+                                        const config = {
+                                            headers: { Authorization: "Bearer " + this.token }
+                                        };
+                    
+                                        axios.delete(this.baseURI + "/" + this.id, config).then((result) => {
+                                            console.log(result.status);
+                                        });
+                                    },
                                 },
                             });
                         </script>
+
                     </div>
                 </div>
             </section>
@@ -257,7 +373,7 @@
             </a>
 
             <!--=============== SCROLLREVEAL ===============-->
-            <!-- <script src="assets/js/scrollreveal.min.js"></script> -->
+            <script src="assets/js/scrollreveal.min.js"></script>
 
             <!--=============== SWIPER JS ===============-->
             <script src="assets/js/swiper-bundle.min.js"></script>
