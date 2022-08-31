@@ -144,6 +144,7 @@
                                     token: "",
                                     id: 0,
                                     title: "",
+                                    address: "",
                                     terrainArea: "",
                                     constructedArea: "",
                                     rooms: "",
@@ -153,7 +154,7 @@
                                     price: "",
                                     property: {},
                                     properties: [],
-                                    baseURI: "http://localhost:8080/api/properties",
+                                    baseURI: "http://localhost:8080/api/user/1/properties",
                                     oauth: "http://localhost:8080/oauth/token"
                                 },
                                 methods: {
@@ -163,7 +164,7 @@
                                         formData.append('password', this.password);
                                         formData.append('grant_type', "password");
                     
-                                        axios.post(this.oauth, formData, { auth: { username: 'mandacaru', password: 'senha123' } }).then((result) => {
+                                        axios.post(this.oauth, formData, { auth: { username: 'arrudabritofelipe@gmail.com', password: 'senha1' } }).then((result) => {
                                             this.token = result.data.access_token;
                                             console.log(this.token);
                                         });
@@ -198,7 +199,7 @@
                                         };
                     
                                         axios
-                                            .get(this.baseURI + "/search?name=" + this.name, config)
+                                            .get(this.baseURI + "/search?title=" + this.title, config)
                                             .then((result) => {
                                                 this.property = result.data;
                                             })
@@ -212,7 +213,14 @@
                                         };
                     
                                         let obj = {
-                                            name: this.name,
+                                            title: this.title,
+                                            address: this.address,
+                                            terrainArea: this.terrainArea,
+                                            constructedArea: this.constructedArea,
+                                            rooms: this.rooms,
+                                            bathrooms: this.bathrooms,
+                                            garageVacancies: this.garageVacancies,
+                                            status: this.status,                                     
                                             price: parseFloat(this.price),
                                         };
                     
@@ -226,7 +234,14 @@
                                         };
                     
                                         let obj = {
-                                            name: this.name,
+                                            title: this.title,
+                                            address: this.address,
+                                            terrainArea: this.terrainArea,
+                                            constructedArea: this.constructedArea,
+                                            rooms: this.rooms,
+                                            bathrooms: this.bathrooms,
+                                            garageVacancies: this.garageVacancies,
+                                            status: this.status,         
                                             price: parseFloat(this.price),
                                         };
                     
@@ -352,20 +367,20 @@
     
             </footer>
     
-    
             <!--========== SCROLL UP ==========-->
             <a href="#" class="scrollup" id="scroll-up">
                 <i class='bx bx-chevrons-up'></i>
             </a>
-    
+
             <!--=============== SCROLLREVEAL ===============-->
-            <!-- <script src="assets/js/scrollreveal.min.js"></script> -->
-    
+            <script src="assets/js/scrollreveal.min.js"></script>
+
             <!--=============== SWIPER JS ===============-->
             <script src="assets/js/swiper-bundle.min.js"></script>
-    
+
             <!--=============== MAIN JS ===============-->
             <script src="assets/js/main.js"></script>
+
         </body>
 
 </body>
