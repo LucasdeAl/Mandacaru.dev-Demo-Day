@@ -11,4 +11,3 @@ import org.springframework.context.annotation.Configuration;
 //@SecurityScheme(name = "oauth", type = SecuritySchemeType.HTTP, scheme = "bearer")
 public class OpenApiConfig {
 }
-
