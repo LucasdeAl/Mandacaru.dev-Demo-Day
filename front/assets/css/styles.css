@@ -901,15 +901,14 @@ body.dark-theme{
   padding: 4rem;
   border-radius: 1.25rem;
   text-align: center;
+  margin: auto;
+  max-width: 400px;
 }
 
 .login__form p{
   color: hsl(228, 90%, 92%);
-  font-size: var(--small-font-size);
-  margin-bottom: 2rem;
+  font-size: var(--font-medium);
 }
-
-
 
 .subscribe__title{
   font-size: var(--h1-font-size);

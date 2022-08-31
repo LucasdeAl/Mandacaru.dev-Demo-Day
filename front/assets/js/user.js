@@ -22,10 +22,10 @@ if(navClose){
 /*=============== REMOVE MENU MOBILE ===============*/
 const navLink = document.querySelectorAll('.nav__link')
 
-const linkAction = () =>{
-  const navMenu = document.getElementById('nav-menu')
-  // // When we click on each nav__link, we remove the show-menu class
-  // navMenu.classList.remove('show-menu')
+function linkAction(){
+    const navMenu = document.getElementById('nav-menu')
+    // When we click on each nav__link, we remove the show-menu class
+    navMenu.classList.remove('show-menu')
 }
 
 navLink.forEach(n => n.addEventListener('click', linkAction))
@@ -72,25 +72,25 @@ let newSwiper = new Swiper(".new-swiper", {
 
 /*=============== SCROLL SECTIONS ACTIVE LINK ===============*/
 
-const sections = document = document.querySelectorAll('section[id]')
+// const sections = document = document.querySelectorAll('section[id]')
 
-function scrollActive(){
-  const scrollY = window.pageYOffset
+// function scrollActive(){
+//   const scrollY = window.pageYOffset
 
-  sections.forEach(current =>{
-    const sectionHeight = current.offsetHeight,
-          sectionTop = current.offsetTop - 58,
-          sectionId = current.getAttribute('id'),
-          sectionsClass = document.querySelector('.nav__menu a[href*=' + sectionId + ']')
+//   sections.forEach(current =>{
+//     const sectionHeight = current.offsetHeight,
+//           sectionTop = current.offsetTop - 58,
+//           sectionId = current.getAttribute('id'),
+//           sectionsClass = document.querySelector('.nav__menu a[href*=' + sectionId + ']')
     
-    if(scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-      document.querySelector('.nav__menu a[href*=' + sectionId + ']').classList.add('active-link')
-    } else{
-      document.querySelector('.nav__menu a[href*=' + sectionId + ']').classList.remove('active-link')
-    }
-  })
-}
-window.addEventListener('scroll', scrollActive)
+//     if(scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+//       document.querySelector('.nav__menu a[href*=' + sectionId + ']').classList.add('active-link')
+//     } else{
+//       document.querySelector('.nav__menu a[href*=' + sectionId + ']').classList.remove('active-link')
+//     }
+//   })
+// }
+// window.addEventListener('scroll', scrollActive)
 
 /*=============== SHOW SCROLL UP ===============*/ 
 function scrollUp(){
@@ -196,19 +196,19 @@ themeButton.addEventListener('click', () => {
 })
 
 /* =========== SCROLL REVEAL ANIMATION ============ */
-const sr = ScrollReveal({
-  origin: 'top',
-  distance: '60px',
-  duration: 2500,
-  delay: 400,
-  // reset: true  
-})
+// const sr = ScrollReveal({
+//   origin: 'top',
+//   distance: '60px',
+//   duration: 2500,
+//   delay: 400,
+//   // reset: true  
+// })
 
-sr.reveal('.home__title, .popular__container, .subscribe__container, .footer__container')
-sr.reveal('.home__description, .footer__info', {delay: 500})
-sr.reveal('.home__search', {delay: 600})
-sr.reveal('.home__value', {delay: 700})
-sr.reveal('.home__images', {delay: 800, origin: 'bottom'})
-sr.reveal('.logos__img', {interval: 50})
-sr.reveal('.value__images, .contact__content', {origin: 'left'})
-sr.reveal('.value__content, .contact__images', {interval: 'right'})
+// sr.reveal('.home__title, .popular__container, .subscribe__container, .footer__container')
+// sr.reveal('.home__description, .footer__info', {delay: 500})
+// sr.reveal('.home__search', {delay: 600})
+// sr.reveal('.home__value', {delay: 700})
+// sr.reveal('.home__images', {delay: 800, origin: 'bottom'})
+// sr.reveal('.logos__img', {interval: 50})
+// sr.reveal('.value__images, .contact__content', {origin: 'left'})
+// sr.reveal('.value__content, .contact__images', {interval: 'right'})
