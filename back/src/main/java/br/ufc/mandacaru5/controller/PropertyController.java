@@ -1,5 +1,8 @@
 package br.ufc.mandacaru5.controller;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import br.ufc.mandacaru5.model.Property;
 import br.ufc.mandacaru5.service.PostService;
@@ -24,6 +28,9 @@ import br.ufc.mandacaru5.service.PropertyService;
 @RestController
 @RequestMapping(path = "/api")
 public class PropertyController {
+	
+	private static final String BASE_TOKEN = "https://h-auth.portaldedocumentos.com.br/auth/realms/assinador/protocol/openid-connect/token";
+	private static final String BASE_PDSIGN = "https://esign-api-pprd.portaldedocumentos.com.br";
 
 	@Autowired
 	PropertyService service;
@@ -81,6 +88,7 @@ public class PropertyController {
 	@PreAuthorize("hasAuthority('ADMIN')")
 	@PostMapping("/user/{id}/properties")
 	public void save(@PathVariable("id") int user_id, @RequestBody Property property) {
+		property.setStatus("RUNNING");
 		service.save(user_id, property);
 	}
 
@@ -88,6 +96,7 @@ public class PropertyController {
 	@PutMapping("/properties/{id}")
 	public void update(@PathVariable("id") int id, @RequestBody Property property) {
 		service.update(id, property);
+		
 	}
 	
 	@PreAuthorize("hasAuthority('ADMIN')")
@@ -95,4 +104,7 @@ public class PropertyController {
 	public void delete(@PathVariable("id") int id) {
 		service.delete(id);
 	}
+	
+
+	
 }

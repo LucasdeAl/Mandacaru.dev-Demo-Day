@@ -2,6 +2,7 @@ package br.ufc.mandacaru5.config.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -18,7 +19,7 @@ import org.springframework.stereotype.Component;
 @Component
 @EnableWebSecurity	
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-//@Configuration
+@Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 
 	@Autowired
@@ -41,8 +42,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		.antMatchers(HttpMethod.DELETE, "/api/properties/**")
 		.antMatchers(HttpMethod.GET,"/api/user/**/properties")
 		.antMatchers(HttpMethod.GET,"/api/user/**/properties/**")
-		.antMatchers(HttpMethod.GET, "/api/properties", "/api/properties/**" );
-		
+		.antMatchers(HttpMethod.GET, "/api/properties", "/api/properties/**" )
+		.antMatchers(HttpMethod.POST, "/api/posts/create");
 //		.antMatchers("/api/login/**")
 //		.antMatchers(HttpMethod.GET, "/api/posts")
 //		.antMatchers("/api/roles/**")

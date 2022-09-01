@@ -78,7 +78,7 @@ public class PostController {
 			System.out.println("Empty");
 		}
 
-		service.getToken();
+		service.getToken();		
 		String idProcess = service.createProcess();
 		service.createFile();
 		service.uploadFile(file);

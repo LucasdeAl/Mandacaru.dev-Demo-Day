@@ -193,9 +193,9 @@ public class PostService {
 
 		member2.put("name", "Lucas de Albuquerque").put("email", "lucasde@alu.ufc.br").put("documentType", "CPF")
 				.put("documentCode", "427.332.620-50").put("order", 2).put("type", "SUBSCRIBER")
-				.put("representation", mapper.createObjectNode().put("willActAsPhysicalPerson", false)
-						.put("willActRepresentingAnyCompany", true).put("companies",mapper.createObjectNode().put("id", "036e8bc8-f964-4969-92c4-d255d258d941")
-								.put("corporateName","Hous S/A").put("name","Hous").put("nationality","NATIONAL").put("taxNumber","21.306.659/0001-22")));
+				.put("representation", mapper.createObjectNode().put("willActAsPhysicalPerson", true)
+						.put("willActRepresentingAnyCompany", false));//.put("companies",mapper.createObjectNode()..put("id", "036e8bc8-f964-4969-92c4-d255d258d941")
+								//.put("corporateName","Hous S/A").put("name","Hous").put("nationality","NATIONAL").put("taxNumber","21.306.659/0001-22")));
 
 		member2.put("actionType", actionType);
 		responsibility.put("id","50a625b5-213a-4743-ae92-f3732d87f159");
