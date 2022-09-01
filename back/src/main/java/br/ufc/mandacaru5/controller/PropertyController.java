@@ -1,5 +1,6 @@
 package br.ufc.mandacaru5.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.ufc.mandacaru5.model.Property;
-import br.ufc.mandacaru5.model.Person;
+import br.ufc.mandacaru5.service.PostService;
 import br.ufc.mandacaru5.service.PropertyService;
 
 @RestController
@@ -26,6 +27,9 @@ public class PropertyController {
 
 	@Autowired
 	PropertyService service;
+	
+	@Autowired
+	PostService pservice;
 
 	@GetMapping("/user/{id}/properties")
 	public ResponseEntity<List<Property>> findAll(@PathVariable(value = "id") int id) {
@@ -58,7 +62,18 @@ public class PropertyController {
 
 	@GetMapping("/properties")
 	public ResponseEntity<List<Property>> findAllProperties() {
-		return new ResponseEntity<List<Property>>(service.findAllProperties(), HttpStatus.OK);
+		
+		List<Property> list = new ArrayList<Property>();
+		
+		for(Property property : service.findAllProperties())
+		{
+			if(property.getStatus().equals("DONE"))
+			{
+				list.add(property);
+			}
+		}
+		
+		return new ResponseEntity<List<Property>>(list, HttpStatus.OK);
 	}
 	
 	@PreAuthorize("hasAuthority('ADMIN')")
