@@ -1,5 +1,6 @@
 package br.ufc.mandacaru5.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.ufc.mandacaru5.model.Property;
-import br.ufc.mandacaru5.model.Person;
+import br.ufc.mandacaru5.service.PostService;
 import br.ufc.mandacaru5.service.PropertyService;
 
 @RestController
@@ -26,9 +27,14 @@ public class PropertyController {
 
 	@Autowired
 	PropertyService service;
+	
+	@Autowired
+	PostService pservice;
 
 	@GetMapping("/user/{id}/properties")
 	public ResponseEntity<List<Property>> findAll(@PathVariable(value = "id") int id) {
+		pservice.getToken();
+		
 		return new ResponseEntity<List<Property>>(service.findAll(id), HttpStatus.OK);
 	}
 
@@ -36,7 +42,7 @@ public class PropertyController {
 	public ResponseEntity<Property> findById(@PathVariable("id") int id) {
 		Property property = service.find(id);
 
-		if (property != null) {
+		if (property != null && property.getStatus().equals("DONE")) {
 			return new ResponseEntity<Property>(property, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<Property>(HttpStatus.NOT_FOUND);
@@ -48,7 +54,7 @@ public class PropertyController {
 		
 		Property property = service.findByTitle(title);
 
-		if (property != null) {
+		if (property != null && property.getStatus().equals("DONE")) {
 			return new ResponseEntity<Property>(property, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<Property>(HttpStatus.NOT_FOUND);
@@ -58,7 +64,18 @@ public class PropertyController {
 
 	@GetMapping("/properties")
 	public ResponseEntity<List<Property>> findAllProperties() {
-		return new ResponseEntity<List<Property>>(service.findAllProperties(), HttpStatus.OK);
+		
+		List<Property> list = new ArrayList<Property>();
+		
+		for(Property property : service.findAllProperties())
+		{
+			if(property.getStatus().equals("DONE"))
+			{
+				list.add(property);
+			}
+		}
+		
+		return new ResponseEntity<List<Property>>(list, HttpStatus.OK);
 	}
 	
 	@PreAuthorize("hasAuthority('ADMIN')")
