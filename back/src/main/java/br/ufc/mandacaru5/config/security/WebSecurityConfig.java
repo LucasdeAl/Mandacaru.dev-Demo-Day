@@ -26,8 +26,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.httpBasic().and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().csrf()
-				.disable();
+//		http.httpBasic().and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().csrf()
+//				.disable();
+		
+		http.sessionManagement()
+        .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED);
 	}
 	
 	@Override
@@ -35,15 +38,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		http
 		.ignoring()
 		.antMatchers(HttpMethod.POST, "/api/user")
+		.antMatchers(HttpMethod.DELETE, "/api/properties/**")
 		.antMatchers(HttpMethod.GET,"/api/user/**/properties")
-		.antMatchers(HttpMethod.GET, "/api/properties", "/api/properties/**" )
-		// Adicionei esses métodos (FELIPE)
-		.antMatchers("/api/login/**")
-		.antMatchers(HttpMethod.GET, "/api/posts")
-		.antMatchers("/api/roles/**")
-		.antMatchers(HttpMethod.OPTIONS, "/oauth/token")
-		.antMatchers("/v3/api-docs/**")
-		.antMatchers("/swagger-ui/**").antMatchers("/swagger-ui.html");
+		.antMatchers(HttpMethod.GET,"/api/user/**/properties/**")
+		.antMatchers(HttpMethod.GET, "/api/properties", "/api/properties/**" );
+		
+//		.antMatchers("/api/login/**")
+//		.antMatchers(HttpMethod.GET, "/api/posts")
+//		.antMatchers("/api/roles/**")
+//		.antMatchers(HttpMethod.OPTIONS, "/oauth/token")
+//		.antMatchers("/v3/api-docs/**")
+//		.antMatchers("/swagger-ui/**").antMatchers("/swagger-ui.html");
 	}
 
 	@Override

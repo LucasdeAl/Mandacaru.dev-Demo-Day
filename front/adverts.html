@@ -150,7 +150,7 @@
                     price: "",
                     property: {},
                     properties: [],
-                    baseURI: "http://localhost:8080/api/user/1/properties",
+                    baseURI: "http://localhost:8080/api",
                     oauth: "http://localhost:8080/oauth/token"
                 },
                 methods: {
@@ -171,7 +171,7 @@
                             headers: { Authorization: "Bearer " + this.token }
                         };
     
-                        axios.get(this.baseURI, config).then((result) => {
+                        axios.get(this.baseURI + "/user/1/properties", config).then((result) => {
                             this.properties = result.data;
                         });
                     },
@@ -181,7 +181,7 @@
                         };
     
                         axios
-                            .get(this.baseURI + "/" + this.id, config)
+                            .get(this.baseURI + "/properties/" + this.id, config)
                             .then((result) => {
                                 this.property = result.data;
                             })
@@ -195,7 +195,7 @@
                         };
     
                         axios
-                            .get(this.baseURI + "/search?title=" + this.title, config)
+                            .get(this.baseURI + "/properties/search?title=" + this.title, config)
                             .then((result) => {
                                 this.property = result.data;
                             })
@@ -220,7 +220,7 @@
                             price: parseFloat(this.price),
                         };
     
-                        axios.post(this.baseURI, obj, config).then((result) => {
+                        axios.post(this.baseURI + "/user/1/properties/", obj, config).then((result) => {
                             this.property = result.data;
                         });
                     },
@@ -241,7 +241,7 @@
                             price: parseFloat(this.price),
                         };
     
-                        axios.put(this.baseURI + "/" + this.id, obj, config).then((result) => {
+                        axios.put(this.baseURI + "/properties/" + this.id, obj, config).then((result) => {
                             this.property = result.data;
                         });
                     },
