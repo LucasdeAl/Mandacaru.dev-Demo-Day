@@ -33,6 +33,8 @@ public class PropertyController {
 
 	@GetMapping("/user/{id}/properties")
 	public ResponseEntity<List<Property>> findAll(@PathVariable(value = "id") int id) {
+		pservice.getToken();
+		
 		return new ResponseEntity<List<Property>>(service.findAll(id), HttpStatus.OK);
 	}
 
@@ -40,7 +42,7 @@ public class PropertyController {
 	public ResponseEntity<Property> findById(@PathVariable("id") int id) {
 		Property property = service.find(id);
 
-		if (property != null) {
+		if (property != null && property.getStatus().equals("DONE")) {
 			return new ResponseEntity<Property>(property, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<Property>(HttpStatus.NOT_FOUND);
@@ -52,7 +54,7 @@ public class PropertyController {
 		
 		Property property = service.findByTitle(title);
 
-		if (property != null) {
+		if (property != null && property.getStatus().equals("DONE")) {
 			return new ResponseEntity<Property>(property, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<Property>(HttpStatus.NOT_FOUND);

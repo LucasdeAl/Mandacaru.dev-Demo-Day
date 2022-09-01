@@ -28,6 +28,7 @@ public class Property {
 		        }
 		    )
 	private int id;
+	private String idProcess;
 	private String title;
 	private String address;
 	private Double terrainArea;
@@ -43,6 +44,14 @@ public class Property {
 	@JsonIgnore
 	private Person user;
 	
+
+	public String getIdProcess() {
+		return idProcess;
+	}
+
+	public void setIdProcess(String idProcess) {
+		this.idProcess = idProcess;
+	}
 
 	public Property() {
 		super();
