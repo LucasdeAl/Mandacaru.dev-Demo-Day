@@ -250,7 +250,7 @@
                             headers: { Authorization: "Bearer " + this.token }
                         };
     
-                        axios.delete(this.baseURI + "/" + this.id, config).then((result) => {
+                        axios.delete(this.baseURI + "/properties/" + this.id, config).then((result) => {
                             console.log(result.status);
                         });
                     },
