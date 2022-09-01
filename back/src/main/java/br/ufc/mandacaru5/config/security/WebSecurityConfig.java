@@ -27,11 +27,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-//		http.httpBasic().and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().csrf()
-//				.disable();
+		http.httpBasic().and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().csrf()
+			.disable();
 		
-		http.sessionManagement()
-        .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED);
+		//http.sessionManagement()
+        //.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED);
 	}
 	
 	@Override

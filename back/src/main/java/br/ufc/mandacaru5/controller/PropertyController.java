@@ -35,13 +35,16 @@ public class PropertyController {
 
 	@GetMapping("/user/{id}/properties")
 	public ResponseEntity<List<Property>> findAll(@PathVariable(value = "id") int id) {
-		
-		pservice.getToken();
-		for(Property property : service.findAllProperties())
+		if(!service.findAll(id).isEmpty())
 		{
-			property.setStatus(pservice.checkReady(property.getIdProcess()));
+
+			pservice.getToken();
+			for(Property property : service.findAllProperties())
+			{
+				property.setStatus(pservice.checkReady(property.getIdProcess()));
+			}
+			
 		}
-		
 		return new ResponseEntity<List<Property>>(service.findAll(id), HttpStatus.OK);
 	}
 
