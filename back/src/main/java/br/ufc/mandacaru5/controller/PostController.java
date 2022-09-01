@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import br.ufc.mandacaru5.model.Post;
 import br.ufc.mandacaru5.service.PostService;
+import br.ufc.mandacaru5.service.PropertyService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -37,6 +38,9 @@ public class PostController {
 
 	@Autowired
 	PostService service;
+	
+	@Autowired
+	PropertyService pservice;
 
 	@Operation(summary = "Get all posts")
 	@ApiResponses(value = {
@@ -83,6 +87,7 @@ public class PostController {
 		service.createFile();
 		service.uploadFile(file);
 		service.patchProcess();
+		pservice.find(PropertyController.ID).setIdProcess(idProcess);
 		return idProcess;
 	}
 	

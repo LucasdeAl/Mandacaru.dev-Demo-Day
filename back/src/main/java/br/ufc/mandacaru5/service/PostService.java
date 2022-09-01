@@ -170,7 +170,7 @@ public class PostService {
 		// Member1
 		ObjectNode member1 = mapper.createObjectNode();
 
-		member1.put("name", "Felipe Brito").put("email", "arrudabritofelipe@gmail.com").put("documentType", "CPF")
+		member1.put("name", "Felipe Brito").put("email", "avgustavo@alu.ufc.br").put("documentType", "CPF")
 				.put("documentCode", "123.456.789-10").put("order", 1).put("type", "SUBSCRIBER")
 				.put("representation", mapper.createObjectNode().put("willActAsPhysicalPerson", true)
 						.put("willActRepresentingAnyCompany", false));
@@ -178,14 +178,14 @@ public class PostService {
 		ObjectNode actionType = mapper.createObjectNode();
 		actionType.put("id", "510b226e-c705-4120-ad9d-4a19633ea3df");
 
-		ObjectNode responsibility = mapper.createObjectNode();
-		responsibility.put("id", "28f11af9-67b4-40e0-9c4e-026a0d166f57");
+		ObjectNode responsibility1 = mapper.createObjectNode();
+		responsibility1.put("id", "28f11af9-67b4-40e0-9c4e-026a0d166f57");
 
 		ObjectNode authenticationType = mapper.createObjectNode();
 		authenticationType.put("id", "841c8833-8566-4a9a-be5b-b30839ed138d");
 
 		member1.put("actionType", actionType);
-		member1.put("responsibility", responsibility);
+		member1.put("responsibility", responsibility1);
 		member1.put("authenticationType", authenticationType);
 
 		// Member2
@@ -198,49 +198,53 @@ public class PostService {
 								//.put("corporateName","Hous S/A").put("name","Hous").put("nationality","NATIONAL").put("taxNumber","21.306.659/0001-22")));
 
 		member2.put("actionType", actionType);
-		responsibility.put("id","50a625b5-213a-4743-ae92-f3732d87f159");
-		member2.put("responsibility", responsibility);
+		ObjectNode responsibility2 = mapper.createObjectNode();
+		responsibility2.put("id","50a625b5-213a-4743-ae92-f3732d87f159");
+		member2.put("responsibility", responsibility2);
 		member2.put("authenticationType", authenticationType);
 		
 		//Member3
 		ObjectNode member3 = mapper.createObjectNode();
 
-		member3.put("name", "Gustavo Vieira").put("email", "avgustavo@alu.ufc.br").put("documentType", "CPF")
+		member3.put("name", "Gustavo Vieira").put("email", "lucasde@alu.ufc.br").put("documentType", "CPF")
 				.put("documentCode", "987.654.321-00").put("order", 3).put("type", "SUBSCRIBER")
 				.put("representation", mapper.createObjectNode().put("willActAsPhysicalPerson", true)
 						.put("willActRepresentingAnyCompany", false));
 		
 		member3.put("actionType", actionType);
-		responsibility.put("id","cc513469-c07c-407e-bdf8-b8c01f0db009");
-		member3.put("responsibility", responsibility);
+		ObjectNode responsibility3 = mapper.createObjectNode();
+		responsibility3.put("id","cc513469-c07c-407e-bdf8-b8c01f0db009");
+		member3.put("responsibility", responsibility3);
 		member3.put("authenticationType", authenticationType);
 		
 		//Member4
 		
 				ObjectNode member4 = mapper.createObjectNode();
 
-				member4.put("name", "Lucas Pinheiro").put("email", "kowalskihardcore64@gmail.com").put("documentType", "CPF")
+				member4.put("name", "Lucas Pinheiro").put("email", "lucasde@alu.ufc.br").put("documentType", "CPF")
 						.put("documentCode", "427.332.620-50").put("order", 4).put("type", "SUBSCRIBER")
 						.put("representation", mapper.createObjectNode().put("willActAsPhysicalPerson", true)
 								.put("willActRepresentingAnyCompany", false));
 				
 				member4.put("actionType", actionType);
-				responsibility.put("id","495c75cc-1620-4cb7-a225-ff8e93862394");
-				member4.put("responsibility", responsibility);
+				ObjectNode responsibility4 = mapper.createObjectNode();
+				responsibility4.put("id","495c75cc-1620-4cb7-a225-ff8e93862394");
+				member4.put("responsibility", responsibility4);
 				member4.put("authenticationType", authenticationType);
 				
 				//Member5
 				
 				ObjectNode member5 = mapper.createObjectNode();
 
-				member5.put("name", "Felipe Arruda").put("email", "felipeabrito@alu.ufc.br").put("documentType", "CPF")
+				member5.put("name", "Felipe Arruda").put("email", "lucasde@alu.ufc.br").put("documentType", "CPF")
 						.put("documentCode", "123.456.789-10").put("order", 4).put("type", "SUBSCRIBER")
 						.put("representation", mapper.createObjectNode().put("willActAsPhysicalPerson", true)
 								.put("willActRepresentingAnyCompany", false));
 				
 				member5.put("actionType", actionType);
-				responsibility.put("id","495c75cc-1620-4cb7-a225-ff8e93862394");
-				member5.put("responsibility", responsibility);
+				ObjectNode responsibility5 = mapper.createObjectNode();
+				responsibility5.put("id","495c75cc-1620-4cb7-a225-ff8e93862394");
+				member5.put("responsibility", responsibility5);
 				member5.put("authenticationType", authenticationType);
 
 		array.add(member1);

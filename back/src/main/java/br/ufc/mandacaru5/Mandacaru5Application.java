@@ -9,6 +9,6 @@ public class Mandacaru5Application {
 
 	public static void main(String[] args) {
 		SpringApplication.run(Mandacaru5Application.class, args);
-		System.out.println(new BCryptPasswordEncoder().encode("senha3"));
+		
 	}
 }
