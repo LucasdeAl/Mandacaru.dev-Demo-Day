@@ -1,0 +1,568 @@
+{
+	"info": {
+		"_postman_id": "988e0cb9-d1b5-4178-8786-0760d859bd33",
+		"name": "atividade3",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "USER",
+			"item": [
+				{
+					"name": "Get a User withAuth",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsibWFuZGFjYXJ1Il0sInVzZXJfbmFtZSI6Imx1Y2FzZGVAYWx1LnVmYy5iciIsInNjb3BlIjpbImFwcGxpY2F0aW9uIl0sImV4cCI6MTY2MTU3NzgzNSwiYXV0aG9yaXRpZXMiOlsiQURNSU4iXSwianRpIjoiR0N2OUdwTXlIWUtPeVlneXpwOG1BRlcwb3NVIiwiY2xpZW50X2lkIjoibWFuZGFjYXJ1In0.IAOOYfSNMZrapCltgNB0JKHs1CB_S-d3Rx-kNFsY3KI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/user/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"user",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Users withAuth",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsibWFuZGFjYXJ1Il0sInVzZXJfbmFtZSI6Imx1Y2FzZGVAYWx1LnVmYy5iciIsInNjb3BlIjpbImFwcGxpY2F0aW9uIl0sImV4cCI6MTY2MTU3Nzk4MSwiYXV0aG9yaXRpZXMiOlsiQURNSU4iXSwianRpIjoiOHMwS2xNbTh3aUo3VW5HX2pzZDRscmVqRVBnIiwiY2xpZW50X2lkIjoibWFuZGFjYXJ1In0.SZAycEPmn8sRjv0DRpTJ4Vs-ut5qNyEXHbVDguz8PPw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a User By Name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/user/search?name=Gustavo Vieira de Andrade",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"user",
+								"search"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Gustavo Vieira de Andrade"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add a User",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"lucas\",\n    \"password\":\"senha123\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a User withAuth",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "senha123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "mandacaru",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \r\n    \"email\": \"avgustavo@alu.ufc.br\",\r\n    \"password\":\"$2a$10$o./9Is8m9WF1/ST3O9t4VeQZcSDrIDr9.Yxt84QluYDoiplaP6Yw.\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/user/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"user",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a User withAuth",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/user/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"user",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PROPERTY",
+			"item": [
+				{
+					"name": "Get All Properties from user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsibWFuZGFjYXJ1Il0sInVzZXJfaWQiOjE5ODU1MTYxOTcsInVzZXJfbmFtZSI6Imx1Y2FzIiwic2NvcGUiOlsiYXBwbGljYXRpb24iXSwiZXhwIjoxNjYyMTg0NzAyLCJqdGkiOiJ1S0xoT1daY3JySjVCb2pTN3E1RTVvZVpKWWciLCJjbGllbnRfaWQiOiJtYW5kYWNhcnUifQ.OXoYeM2i51dmqzVMShuq0kIq6aUqHjPeYTMSYhelG-A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/user/1/properties",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"user",
+								"1",
+								"properties"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a Property",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/properties/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"properties",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a Property by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/properties/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"properties",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a Property By Title",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/properties/search?title=Caverna do Dragão",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"properties",
+								"search"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "Caverna do Dragão"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all Properties",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/properties",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"properties"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add a Property withAuth",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsibWFuZGFjYXJ1Il0sInVzZXJfaWQiOi0xMDc2ODgxMDM3LCJ1c2VyX25hbWUiOiJsdWNhcyIsInNjb3BlIjpbImFwcGxpY2F0aW9uIl0sImV4cCI6MTY2MjE4Mjg1MSwianRpIjoid3N0a1dGa0pRS2MzeFBYY2gtS1BBeWZONnBnIiwiY2xpZW50X2lkIjoibWFuZGFjYXJ1In0.CIb4AqD6POQ28XX0Jh1Pzem5s3q3jfEeEIJPlogjCTU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Caverna\",\r\n    \"address\": \"Floresta perdida\",\r\n    \"terrainArea\": 1000,\r\n    \"constructedArea\": 0,\r\n    \"rooms\": 1,\r\n    \"bathrooms\": 1,\r\n    \"garageVacancies\": 100,\r\n    \"price\": 1065654,\r\n    \"status\": \"em analise\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/user/1/properties",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"user",
+								"1",
+								"properties"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a Property withAuth",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Caverna do Dragaozinho\",\r\n    \"address\": \"avgustavo@alu.ufc.br\",\r\n    \"terrainArea\": 1000,\r\n    \"constructedArea\": 0,\r\n    \"rooms\": 1,\r\n    \"bathrooms\": 1,\r\n    \"garageVacancies\": 100,\r\n    \"price\": 1065654,\r\n    \"status\": \"em analise\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/properties/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"properties",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a Property withAuth",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/properties/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"properties",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "SECURITY",
+			"item": [
+				{
+					"name": "Generate Token",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "senha123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "mandacaru",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "lucas",
+									"type": "default"
+								},
+								{
+									"key": "password",
+									"value": "senha123",
+									"type": "default"
+								},
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/oauth/token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"oauth",
+								"token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "POST",
+			"item": [
+				{
+					"name": "Get Process Status with Auth",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsibWFuZGFjYXJ1Il0sInVzZXJfaWQiOi0xMDc2ODgxMDM3LCJ1c2VyX25hbWUiOiJsdWNhcyIsInNjb3BlIjpbImFwcGxpY2F0aW9uIl0sImV4cCI6MTY2MjE4Mjg1MSwianRpIjoid3N0a1dGa0pRS2MzeFBYY2gtS1BBeWZONnBnIiwiY2xpZW50X2lkIjoibWFuZGFjYXJ1In0.CIb4AqD6POQ28XX0Jh1Pzem5s3q3jfEeEIJPlogjCTU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/posts/status/7f7a5b05-f0d0-43b4-b2f0-6537a08bb7f5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"posts",
+								"status",
+								"7f7a5b05-f0d0-43b4-b2f0-6537a08bb7f5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create process with Auth",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsibWFuZGFjYXJ1Il0sInVzZXJfaWQiOjE5ODU1MTYxOTcsInVzZXJfbmFtZSI6Imx1Y2FzIiwic2NvcGUiOlsiYXBwbGljYXRpb24iXSwiZXhwIjoxNjYyMTg0NzAyLCJqdGkiOiJ1S0xoT1daY3JySjVCb2pTN3E1RTVvZVpKWWciLCJjbGllbnRfaWQiOiJtYW5kYWNhcnUifQ.OXoYeM2i51dmqzVMShuq0kIq6aUqHjPeYTMSYhelG-A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/home/lucas/Downloads/PDF-teste.pdf"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/posts/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"posts",
+								"create"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
