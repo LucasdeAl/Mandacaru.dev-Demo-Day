@@ -912,6 +912,7 @@ body.dark-theme{
   margin: auto;
   padding: 2rem;
   text-align: center;
+  margin-bottom: 2rem;
 }
 
 .login__form p{
@@ -939,9 +940,53 @@ body.dark-theme{
   border: 3px solid var(--text-color-light);
 }
 
+.login__button text{
+  color: #fff;
+}
+
 .login__button:hover{
   background-color: var(--body-color);
   cursor: pointer;
+}
+
+/*=============== PROPERTIES ===============*/
+
+.property__form{
+  /* border: 2px solid var(--first-color-light); */
+  /* padding: 2rem; */
+  /* border-radius: 1.25rem; */
+  text-align: left;
+  max-width: 500px;
+}
+
+.property__input{
+  padding: 0.5rem;
+  border: 1px solid;
+  border-radius: 0.25rem;
+  margin-left: 1rem;
+  width: 70%;
+}
+
+.property__button{
+  /* border: 2px solid var(--first-color); */
+  /* background: var(--first-color-light); */
+  font-size: var(--small-font-size);
+  padding: 1rem;
+  cursor: pointer;
+
+  /* background-color: var(--first-color); */
+  padding: .35rem .75rem .35rem .75rem;
+  align-items: center;
+  border-radius: .75rem;
+  border: 3px solid var(--text-color-light);
+}
+
+.property__form-button{
+  padding: 0.2rem;
+  border: 1px solid;
+  border-radius: 0.25rem;
+  margin-left: 1rem;
+  width: 40%;
 }
 
 /*=============== SCROLL BAR ===============*/

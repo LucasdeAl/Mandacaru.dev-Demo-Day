@@ -99,6 +99,7 @@
                                 
                                 </p>                   
                             </div>
+                            
                             <div class="login__sign-up">
                                 <p>
                                     <a href="sign-in.html">Cadastrar-me</a>
@@ -113,8 +114,8 @@
                             var app = new Vue({
                                 el: "#app",
                                 data: {
-                                    email: "",
-                                    password: "",
+                                    email: "arrudabritofelipe@gmail.com",
+                                    password: "senha1",
                                     token: "",
                                     id: 0,
                                     title: "",
@@ -138,7 +139,7 @@
                                         formData.append('password', this.password);
                                         formData.append('grant_type', "password");
                     
-                                        axios.post(this.oauth, formData, { auth: { username: 'arrudabritofelipe@gmail.com', password: 'senha1' } }).then((result) => {
+                                        axios.post(this.oauth, formData, { auth: { username: 'mandacaru', password: 'senha123' } }).then((result) => {
                                             this.token = result.data.access_token;
                                             console.log(this.token);
                                         });

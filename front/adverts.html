@@ -86,57 +86,75 @@
                 </div>
             </section>
 
-        <div id="app">
-            <div class="login__form">
-                <p>
-                    Login: <input type="text" name="" id="" v-model="email" /><br /><br />
-                    Password: <input type="password" name="" id="" v-model="password" /><br /><br />
-                    <button @click="login">Login</button><br /><br />
-                    
-                    Id: <input type="text" name="" id="" v-model="id" /><br /><br />
-                    title: <input type="text" name="" id="" v-model="title" /><br /><br />
-                    terrainArea: <input type="number" name="" id="" v-model="terrainArea" /><br /><br />
-                    constructedArea: <input type="number" name="" id="" v-model="constructedArea" /><br /><br />
-                    rooms: <input type="number" name="" id="" v-model="rooms" /><br /><br />
-                    bathrooms: <input type="number" name="" id="" v-model="bathrooms" /><br /><br />
-                    garageVacancies: <input type="number" name="" id="" v-model="garageVacancies" /><br /><br />
-                    status: <input type="text" name="" id="" v-model="status" /><br /><br />
-                    price: <input type="price" name="" id="" v-model="price" /><br /><br />
-
+        <div class="container">
+            <div id="app">
+                
+                <p class="value__description">
+                    Confirme seu login e senha.
                 </p>
+
+                <div class="property__form">
+                    <p>
+                        Usuário: <input class="property__input" type="text" name="" id="" v-model="email" /><br /><br />
+                        Senha: <input class="property__input" type="password" name="" id="" v-model="password" /><br /><br />
+                        
+                        <button class="property__button" @click="login">Login</button><br />
+                    </p>                   
+                </div>
+                <br><br>
+                <div class="property__form">
+                    <h2 class="section__title">
+                        Buscar<span>:</span>
+                    </h2>
+                    <p>
+                        Matrícula do imóvel: <input class="property__form-button" type="text" name="" id="" v-model="id" /><br /><br />
+                        Título da Propriedade: <input class="property__form-button" type="text" name="" id="" v-model="title" /><br /><br />
+                        Terreno do Imóvel: <input class="property__form-button" type="number" name="" id="" v-model="terrainArea" /><br /><br />
+                        Área de construção: <input class="property__form-button" type="number" name="" id="" v-model="constructedArea" /><br /><br />
+                        Número de quartos: <input class="property__form-button" type="number" name="" id="" v-model="rooms" /><br /><br />
+                        Número de banheiros: <input class="property__form-button" type="number" name="" id="" v-model="bathrooms" /><br /><br />
+                        Vagas na garagem: <input class="property__form-button" type="number" name="" id="" v-model="garageVacancies" /><br /><br />
+                        Preço: <input class="property__form-button" type="price" name="" id="" v-model="price" /><br /><br />
+                    </p>
                     
-                <button @click="fetchProperties">Fetch properties</button><br /><br />
-                <button @click="fetchPropertyById">Fetch Property By Id</button><br /><br />
-                <button @click="fetchPropertyByName">Fetch Property By name</button><br /><br />
-                <button @click="postProperty">Post Property</button><br /><br />
-                <button @click="putProperty">Put Property</button><br /><br />
-                <button @click="deletePropertyById">Delete Property</button><br /><br />
-    
-                <p>{{ property }}</p>
-    
-                <ul>
-                    <li v-for="property in properties" :key="property.id">
-                        <h4>{{ property.id }}</h4>
-                        <p>{{ property.title }}</p>
-                        <p>{{ property.address }}</p>
-                        <p>{{ property.terrainArea }}</p>
-                        <p>{{ property.constructedArea }}</p>
-                        <p>{{ property.rooms }}</p>
-                        <p>{{ property.bathrooms }}</p>
-                        <p>{{ property.garageVacancies }}</p>
-                        <p>{{ property.status }}</p>
-                        <p>{{ property.price }}</p>
-                    </li>
-                </ul>
+                
+                
+                    <button class="property__button" @click="fetchProperties">Listar todos os imóveis</button><br /><br />
+                    <button class="property__button" @click="fetchPropertyById">Buscar por matrícula</button><br /><br />
+                    <button class="property__button" @click="fetchPropertyByName">Buscar por título do imóvel</button><br /><br />
+                    <button class="property__button" @click="postProperty">Adicionar propriedade</button><br /><br />
+                    <button class="property__button" @click="putProperty">Atualizar propriedade</button><br /><br />
+                    <button class="property__button" @click="deletePropertyById">Deletar anúncio</button><br /><br />
+        
+                    <p>{{ property }}</p>
+                    <div class="property__data">
+
+                        <ul>
+                            <li v-for="property in properties" :key="property.id">
+                                <h2 class="section__title">{{ property.title }}</h2>
+                                <h3>Matrícula: {{ property.id }}</h3>
+                                <p>Endereço: {{ property.address }}</p>
+                                <p>Área total: {{ property.terrainArea }}</p>
+                                <p>Terreno construído: {{ property.constructedArea }}</p>
+                                <p>Número de quartos: {{ property.rooms }}</p>
+                                <p>Número de banheiros: {{ property.bathrooms }}</p>
+                                <p>Número de vagas na garagem: {{ property.garageVacancies }}</p>
+                                <p>Status: {{ property.status }}</p>
+                                <p>Preço: {{ property.price }}</p>
+                                <br>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-        </div>
-    
+        </div>    
+        
         <script>
             var app = new Vue({
                 el: "#app",
                 data: {
-                    email: "",
-                    password: "",
+                    email: "arrudabritofelipe@gmail.com",
+                    password: "senha1",
                     token: "",
                     id: 0,
                     title: "",
@@ -160,7 +178,7 @@
                         formData.append('password', this.password);
                         formData.append('grant_type', "password");
     
-                        axios.post(this.oauth, formData, { auth: { username: 'arrudabritofelipe@gmail.com', password: 'senha1' } }).then((result) => {
+                        axios.post(this.oauth, formData, { auth: { username: 'mandacaru', password: 'senha123' } }).then((result) => {
                             this.token = result.data.access_token;
                             console.log(this.token);
                         });
