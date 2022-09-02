@@ -41,8 +41,11 @@ public class PropertyController {
 			pservice.getToken();
 			for(Property property : service.findAllProperties())
 			{
-				property.setStatus(pservice.checkReady(property.getIdProcess()));
-				service.update(property.getId(), property);
+				if(property.getIdProcess()!=null)
+				{
+					property.setStatus(pservice.checkReady(property.getIdProcess()));
+					service.update(property.getId(), property);
+				}
 			}
 			
 		}

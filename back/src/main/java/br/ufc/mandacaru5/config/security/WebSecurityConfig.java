@@ -39,6 +39,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		http
 		.ignoring()
 		.antMatchers(HttpMethod.POST, "/api/user")
+		.antMatchers(HttpMethod.GET, "/api/user/search")
 		.antMatchers(HttpMethod.DELETE, "/api/properties/**")
 //		.antMatchers(HttpMethod.GET,"/api/user/**/properties/**")
 		.antMatchers(HttpMethod.GET, "/api/properties", "/api/properties/**" );
