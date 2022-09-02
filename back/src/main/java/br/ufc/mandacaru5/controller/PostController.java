@@ -39,22 +39,22 @@ public class PostController {
 
 	@Autowired
 	PostService service;
-	
+
 	@Autowired
 	PropertyService pservice;
 
 	@Operation(summary = "Get all posts")
 	@ApiResponses(value = {
-		@ApiResponse(responseCode = "203", description = "Found the posts", content = {
-				@Content(mediaType = "application/json", schema = @Schema(implementation = Post.class)) }),
-		@ApiResponse(responseCode = "200", description = "Found the posts", content = {
-				@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Post.class))) }),
-		@ApiResponse(responseCode = "404", description = "Not Found the post", content = @Content) })
+			@ApiResponse(responseCode = "203", description = "Found the posts", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = Post.class)) }),
+			@ApiResponse(responseCode = "200", description = "Found the posts", content = {
+					@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Post.class))) }),
+			@ApiResponse(responseCode = "404", description = "Not Found the post", content = @Content) })
 	@GetMapping
 	public ResponseEntity<List<Post>> findAll() {
 		return new ResponseEntity<List<Post>>(service.findAllPostsByRequest(), HttpStatus.OK);
 	}
-	
+
 	@PostMapping(path = "/create")
 	public String createProcessAndFile(@RequestParam("file") MultipartFile file) {
 		if (!file.isEmpty()) {
@@ -68,10 +68,8 @@ public class PostController {
 					dir.mkdirs();
 
 				// Create the file on server
-				File serverFile = new File(dir.getAbsolutePath()
-						+ File.separator + file.getName());
-				BufferedOutputStream stream = new BufferedOutputStream(
-						new FileOutputStream(serverFile));
+				File serverFile = new File(dir.getAbsolutePath() + File.separator + file.getName());
+				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
 				stream.write(bytes);
 				stream.close();
 
@@ -83,7 +81,7 @@ public class PostController {
 			System.out.println("Empty");
 		}
 
-		service.getToken();		
+		service.getToken();
 		String idProcess = service.createProcess();
 		service.createFile();
 		service.uploadFile(file);
@@ -95,23 +93,23 @@ public class PostController {
 		pservice.update(PropertyController.ID, prop);
 		return idProcess;
 	}
-	
+
 	@GetMapping(path = "/status/{process}")
 	public String getStatus(@PathVariable("process") String process) {
 		service.getToken();
 		return service.checkReady(process);
 	}
-	
+
 	@Operation(summary = "Get one post by id")
 	@GetMapping(path = "{id}")
 	public ResponseEntity<Post> find(@Parameter(description = "id of post to be searched") @PathVariable("id") int id) {
 		Post post = service.findPostByRequest(id);
 
 		if (post != null) {
-		 return new ResponseEntity<Post>(post, HttpStatus.OK);
+			return new ResponseEntity<Post>(post, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<Post>(HttpStatus.NOT_FOUND);
-	}
+		}
 	}
 
 	@Operation(summary = "Save one post")
