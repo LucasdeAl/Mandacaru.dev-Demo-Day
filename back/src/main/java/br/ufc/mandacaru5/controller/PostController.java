@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import br.ufc.mandacaru5.model.Post;
+import br.ufc.mandacaru5.model.Property;
 import br.ufc.mandacaru5.service.PostService;
 import br.ufc.mandacaru5.service.PropertyService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -86,8 +87,12 @@ public class PostController {
 		String idProcess = service.createProcess();
 		service.createFile();
 		service.uploadFile(file);
-		service.patchProcess();
-		pservice.find(PropertyController.ID).setIdProcess(idProcess);
+		service.patchProcess();//
+		System.out.println(PropertyController.ID);
+		Property prop = new Property();
+		prop = pservice.find(PropertyController.ID);
+		prop.setIdProcess(idProcess);
+		pservice.update(PropertyController.ID, prop);
 		return idProcess;
 	}
 	

@@ -40,10 +40,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		.ignoring()
 		.antMatchers(HttpMethod.POST, "/api/user")
 		.antMatchers(HttpMethod.DELETE, "/api/properties/**")
-		.antMatchers(HttpMethod.GET,"/api/user/**/properties")
-		.antMatchers(HttpMethod.GET,"/api/user/**/properties/**")
-		.antMatchers(HttpMethod.GET, "/api/properties", "/api/properties/**" )
-		.antMatchers(HttpMethod.POST, "/api/posts/create");
+//		.antMatchers(HttpMethod.GET,"/api/user/**/properties/**")
+		.antMatchers(HttpMethod.GET, "/api/properties", "/api/properties/**" );
 //		.antMatchers("/api/login/**")
 //		.antMatchers(HttpMethod.GET, "/api/posts")
 //		.antMatchers("/api/roles/**")

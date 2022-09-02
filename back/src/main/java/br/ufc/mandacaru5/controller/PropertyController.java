@@ -37,11 +37,12 @@ public class PropertyController {
 	public ResponseEntity<List<Property>> findAll(@PathVariable(value = "id") int id) {
 		if(!service.findAll(id).isEmpty())
 		{
-
+			
 			pservice.getToken();
 			for(Property property : service.findAllProperties())
 			{
 				property.setStatus(pservice.checkReady(property.getIdProcess()));
+				service.update(property.getId(), property);
 			}
 			
 		}
@@ -93,7 +94,7 @@ public class PropertyController {
 	public void save(@PathVariable("id") int user_id, @RequestBody Property property) {
 		property.setStatus("RUNNING");
 		service.save(user_id, property);
-		ID = property.getId();
+		this.ID = property.getId();
 		
 	}
 

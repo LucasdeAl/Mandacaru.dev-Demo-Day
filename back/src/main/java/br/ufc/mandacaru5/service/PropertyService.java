@@ -46,7 +46,7 @@ public class PropertyService {
 		Optional<Property> property = propertyRepository.findById(id);
 
 		if (property.isPresent()) {
-			return property.get();
+			return property.get();	
 		}
 
 		return null;

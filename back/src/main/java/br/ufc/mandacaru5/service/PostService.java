@@ -36,6 +36,9 @@ public class PostService {
 
 	@Autowired
 	Properties properties;
+	
+	@Autowired
+	PropertyService pservice;
 
 	public PostService() {
 		gson = new Gson();
@@ -139,7 +142,7 @@ public class PostService {
 	public void getToken() {
 		OkHttpClient client = new OkHttpClient.Builder().build();
 		RequestBody formBody = new FormBody.Builder().add("username", "integracao.ufc@pd.tec.br")
-				.add("password", "3gpB9d*n").add("client_id", "assinador-app").add("grant_type", "password").build();
+				.add("password", "s9GYMru3#6").add("client_id", "assinador-app").add("grant_type", "password").build();
 
 		Request request = new Request.Builder().url(BASE_TOKEN).post(formBody).build();
 
